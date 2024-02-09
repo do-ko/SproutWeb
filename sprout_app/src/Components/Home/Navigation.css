@@ -1,0 +1,38 @@
+.nav-container {
+    background-color: red;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navbar {
+    padding: 0;
+    justify-content: space-between !important;
+    background: white !important;
+    /*background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255,255,255,0.5019257703081232) 13%, rgba(255,255,255,1) 25%);*/
+}
+
+.navbar-brand {
+    color: #6c8d66 !important;
+    text-transform: uppercase;
+    font-weight: 800;
+    height: auto;
+    padding: 0;
+    font-size: 22px;
+    line-height: 1.6;
+    letter-spacing: 1px;
+}
+
+.navbar-collapse {
+    flex-grow: 0 !important;
+}
+
+.navbar-nav {
+    /*background-color: green;*/
+}
+
+/*.navbar-collapse .navbar-nav {*/
+/*    font-size: 14px;*/
+/*    line-height: 20px;*/
+/*}*/
+
