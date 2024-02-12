@@ -28,19 +28,19 @@
     text-align: center;
 }
 
-.fill {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    background-color: cornflowerblue;
-    height: 100%;
-}
+/*.fill {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    overflow: hidden;*/
+/*    background-color: cornflowerblue;*/
+/*    height: 100%;*/
+/*}*/
 
-.fill img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 16px;
-    flex-shrink: 0;
-}
+/*.fill img {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    object-fit: cover;*/
+/*    border-radius: 16px;*/
+/*    flex-shrink: 0;*/
+/*}*/

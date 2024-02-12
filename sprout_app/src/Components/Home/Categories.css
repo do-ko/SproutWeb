@@ -5,14 +5,17 @@
 }
 
 .imagePlants {
+    height: 70%;
     background-image: url('../../assets/plants.jpg');
 }
 
 .imageGround {
+    height: 30%;
     background-image: url('../../assets/ground.jpg');
 }
 
 .imagePots {
+    height: 100%;
     background-image: url('../../assets/pots.jpg');
 }
 
@@ -27,4 +30,22 @@
     display: flex;
     align-items: end;
     justify-content: end;
+}
+
+@media only screen and (max-width: 992px) {
+    .textCategory {
+        font-size: 36px;
+    }
+
+    .imageCategory {
+        background-position: center;
+        background-size: cover;
+        border-radius: 16px;
+        height: 200px;
+    }
+
+    .imagePots {
+        background-image: url('../../assets/pots.jpg');
+        margin-top: 16px;
+    }
 }
