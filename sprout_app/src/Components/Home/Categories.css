@@ -1,0 +1,30 @@
+.imageCategory {
+    background-position: center;
+    background-size: cover;
+    border-radius: 16px;
+}
+
+.imagePlants {
+    background-image: url('../../assets/plants.jpg');
+}
+
+.imageGround {
+    background-image: url('../../assets/ground.jpg');
+}
+
+.imagePots {
+    background-image: url('../../assets/pots.jpg');
+}
+
+.textCategory {
+    color: white;
+    font-size: 48px;
+    padding: 16px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: end;
+    justify-content: end;
+}

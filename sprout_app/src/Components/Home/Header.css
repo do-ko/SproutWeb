@@ -1,7 +1,45 @@
 .headerContainer {
-    background-color: yellow;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-content: center;
+}
+
+.headerContainer .row {
+    align-items: center;
+}
+
+.heroImage {
+    max-height: 500px;
+}
+
+.heroTextTile {
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 64px;
+}
+
+.heroText {
+    font-size: 36px;
+}
+
+.heroButtonContainer {
+    margin-top: 24px !important;
+}
+
+.btn-custom {
+    background-color: #84A68B !important;
+    color: white !important;
+    text-transform: uppercase;
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    letter-spacing: 2px;
+}
+
+.btn-custom:hover {
+    background-color: #6C8D66 !important;
+}
+
+.btn-custom:active {
+    border: var(--bs-btn-border-width) solid var(--bs-btn-border-color) !important;
 }
