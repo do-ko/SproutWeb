@@ -3,6 +3,7 @@ import {Header} from "../Components/Home/Header";
 import {ChooseUs} from "../Components/Home/ChooseUs";
 import {Categories} from "../Components/Home/Categories";
 import {TopPlants} from "../Components/Home/TopPlants";
+import {Reviews} from "../Components/Home/Reviews";
 export const HomePage = () => {
     return(
         <>
@@ -11,6 +12,7 @@ export const HomePage = () => {
             <ChooseUs />
             <Categories />
             <TopPlants />
+            <Reviews />
         </>
     )
 }
