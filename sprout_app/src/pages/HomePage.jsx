@@ -4,6 +4,7 @@ import {ChooseUs} from "../Components/Home/ChooseUs";
 import {Categories} from "../Components/Home/Categories";
 import {TopPlants} from "../Components/Home/TopPlants";
 import {Reviews} from "../Components/Home/Reviews";
+import {HomeFooter} from "../Components/Home/HomeFooter";
 export const HomePage = () => {
     return(
         <>
@@ -13,6 +14,7 @@ export const HomePage = () => {
             <Categories />
             <TopPlants />
             <Reviews />
+            <HomeFooter />
         </>
     )
 }

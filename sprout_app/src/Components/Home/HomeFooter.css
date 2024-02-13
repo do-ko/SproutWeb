@@ -1,0 +1,23 @@
+.footer-background {
+    background: #E7E7E7;
+
+}
+
+.subscribe-container {
+    /*background: #96AEED;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.disclaimer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.disclaimer-text {
+    text-align: center;
+    font-size: 20px !important;
+    font-weight: 300;
+}
