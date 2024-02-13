@@ -59,6 +59,14 @@
 
     .imagePots {
         background-image: url('../../assets/pots.jpg');
-        margin-top: 16px;
     }
+
+    .row {
+        height: auto !important;
+    }
+
+    .col-lg-4 {
+        margin-top: 24px !important;
+    }
+
 }
