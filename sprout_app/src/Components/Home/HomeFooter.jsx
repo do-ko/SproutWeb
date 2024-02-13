@@ -1,7 +1,34 @@
-import {Button, Container, Form, Stack} from "react-bootstrap";
+import {Button, Col, Container, Form, FormGroup, Modal, Row, Stack} from "react-bootstrap";
 import "./HomeFooter.css";
+import {useState} from "react";
 
 export const HomeFooter = () => {
+    const [modalShow, setModalShow] = useState(false);
+
+    function MyVerticallyCenteredModal(props) {
+        return (
+            <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Thank You for Subscribing!
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>
+                        Welcome to the Sprout family! We're thrilled to have you on board, and we can't
+                        wait to share the joy of cultivating a green paradise with you.
+                    </p>
+                </Modal.Body>
+            </Modal>
+        );
+    }
+
+
     return (
         <div className={"footer-background"}>
             <Container>
@@ -9,17 +36,18 @@ export const HomeFooter = () => {
                     <div className={"subscribe-container"}>
                         <h3 className={"centered-text"}>Stay in the Loop!</h3>
                         <p className={"centered-text"}>Subscribe for Exclusive Deals and Updates!</p>
-                        <Form>
+                        <Form onSubmit={() => setModalShow(true)}>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
-                                <Form.Control type="email" placeholder="Enter email" />
+                                <Form.Control type="email" placeholder="Enter email"/>
                                 <Form.Text className="text-muted">
                                     We'll never share your email with anyone else.
                                 </Form.Text>
                             </Form.Group>
+                            <Form.Group as={"div"} style={{display: "flex", justifyContent: "center"}}>
+                                <Button variant={"custom"} size={"lg"}
+                                        type="submit">Subscribe</Button>
+                            </Form.Group>
                         </Form>
-                        <Button variant={"custom"} type="submit" size={"lg"}>
-                            Subscribe
-                        </Button>
                     </div>
                     <div className={"disclaimer-container"}>
                         <p className={"disclaimer-text"}>
@@ -38,6 +66,11 @@ export const HomeFooter = () => {
 
                 </Stack>
             </Container>
+
+            <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
         </div>
     );
 }
