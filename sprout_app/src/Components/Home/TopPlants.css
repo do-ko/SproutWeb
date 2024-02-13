@@ -117,6 +117,98 @@ img {
     text-align: center;
 }
 
+.card-title {
+    text-align: center;
+}
+
+
+.plantTagContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.plantTag {
+    padding: 0 24px;
+    border-radius: 16px;
+    border-style: solid;
+    border-width: 3px;
+    /*border-color: red;*/
+    font-weight: 600;
+}
+
+.sunTag {
+    border-color: #E8C794;
+    color: #E8C794;
+    background-color: rgba(232, 199, 148, 0.26);
+}
+
+.toxicTag {
+    border-color: #CE9FF3;
+    color: #CE9FF3;
+    background-color: rgba(206, 159, 243, 0.26);
+}
+
+.wetTag {
+    border-color: #96AEED;
+    color: #96AEED;
+    background-color: rgba(150, 174, 237, 0.26);
+}
+
+.petTag {
+    border-color: #F1A4A4;
+    color: #F1A4A4;
+    background-color: rgba(241, 164, 164, 0.26);
+}
+
+.dryTag {
+    border-color: #AE9895;
+    color: #AE9895;
+    background-color: rgba(174, 152, 149, 0.26);
+}
+
+.plantDataContainer {
+    /*margin-top: 16px;*/
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #84A68B;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 16px;
+    border: solid 1px white;
+}
+
+.price {
+    margin: 0;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 1399px) {
+    .plantTag {
+        padding: 0 16px;
+        border-radius: 16px;
+        border-style: solid;
+        border-width: 3px;
+        /*border-color: red;*/
+        font-weight: 600;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 1199px) {
+    .plantTag {
+        padding: 0 8px;
+        border-radius: 16px;
+        border-style: solid;
+        border-width: 3px;
+        /*border-color: red;*/
+        font-weight: 600;
+        font-size: 16px;
+    }
+}
+
 @media screen and (min-width: 992px) {
     .carousel-inner {
         display: flex;
@@ -134,6 +226,56 @@ img {
     .top-plants-title {
         padding: 1em;
         text-align: start;
+    }
+
+    .imageWrapper{
+        height: 80%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .card {
+        height: 50vh !important;
+    }
+
+    .imageWrapper{
+        height: 80%;
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+    }
+
+    .plant1 {
+        background-image: url("../../assets/topPlants/plant1.jpg");
+    }
+
+    .plant2 {
+        background-image: url("../../assets/topPlants/plant2.jpg");
+    }
+
+    .plant3 {
+        background-image: url("../../assets/topPlants/plant3.jpg");
+    }
+
+    .plant4 {
+        background-image: url("../../assets/topPlants/plant4.jpg");
+    }
+
+    .plant5 {
+        background-image: url("../../assets/topPlants/plant5.jpg");
+    }
+
+    img {
+        display: none;
+    }
+
+    .plantTag {
+        padding: 0 16px;
+        border-radius: 16px;
+        border-style: solid;
+        border-width: 3px;
+        font-weight: 600;
+        font-size: 24px;
     }
 }
 
