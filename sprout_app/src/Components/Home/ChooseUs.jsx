@@ -2,7 +2,7 @@ import {Col, Container, Row} from "react-bootstrap";
 
 export const ChooseUs = () => {
     return (
-        <Container className={"sectionContainer"}>
+        <Container className={"sectionContainer"} style={{marginBottom: 48}}>
             <Container>
                 <Row style={{marginBottom: 16}}>
                     <Col className={"primary-title centered-text"}>Choose Us!</Col>

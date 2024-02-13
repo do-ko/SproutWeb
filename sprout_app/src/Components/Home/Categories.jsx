@@ -16,7 +16,7 @@ export const Categories = () => {
                         </a>
                     </Stack>
                 </Col>
-                <Col lg={4}>
+                <Col lg={4} className={"pots-container"}>
                     <a href={"/"} className={"imageCategory imagePots textCategory"}>
                         Pots
                     </a>

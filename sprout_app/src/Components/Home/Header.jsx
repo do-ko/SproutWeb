@@ -3,7 +3,7 @@ import {Button, Col, Container, Row} from "react-bootstrap";
 import hero from "../../assets/hero.jpg"
 export const Header = () => {
     return(
-        <Container className={"sectionContainer"}>
+        <Container className={"headerContainer"}>
             <Row style={{width:"100%"}}>
                 <Col className={"heroTextContainer"}>
                     <Row>
