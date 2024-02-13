@@ -1,0 +1,147 @@
+/*img {*/
+/*    height: auto;*/
+/*}*/
+
+/*.carousel-inner {*/
+/*    margin-right: 16px;*/
+/*    margin-left: 16px;*/
+/*}*/
+
+
+/*.card-title {*/
+/*    text-align: center;*/
+/*}*/
+
+/*.plantTagContainer {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    gap: 16px;*/
+/*}*/
+
+/*.plantTag {*/
+/*    padding: 0 24px;*/
+/*    border-radius: 16px;*/
+/*    border-style: solid;*/
+/*    border-width: 3px;*/
+/*    !*border-color: red;*!*/
+/*    font-weight: 600;*/
+/*}*/
+
+/*.sunTag {*/
+/*    border-color: #E8C794;*/
+/*    color: #E8C794;*/
+/*    background-color: rgba(232, 199, 148, 0.26);*/
+/*}*/
+
+/*.toxicTag {*/
+/*    border-color: #CE9FF3;*/
+/*    color: #CE9FF3;*/
+/*    background-color: rgba(206, 159, 243, 0.26);*/
+/*}*/
+
+/*.wetTag {*/
+/*    border-color: #96AEED;*/
+/*    color: #96AEED;*/
+/*    background-color: rgba(150, 174, 237, 0.26);*/
+/*}*/
+
+/*.petTag {*/
+/*    border-color: #F1A4A4;*/
+/*    color: #F1A4A4;*/
+/*    background-color: rgba(241, 164, 164, 0.26);*/
+/*}*/
+
+/*.dryTag {*/
+/*    border-color: #AE9895;*/
+/*    color: #AE9895;*/
+/*    background-color: rgba(174, 152, 149, 0.26);*/
+/*}*/
+
+/*.plantDataContainer {*/
+/*    margin-top: 16px;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*}*/
+
+/*.price {*/
+/*    margin: 0;*/
+/*    font-weight: 600;*/
+/*}*/
+
+/*.goToCartBtn {*/
+/*    display: block;*/
+/*    background-color: white;*/
+/*    !*color: white;*!*/
+/*    text-decoration: none;*/
+/*    !*padding: 0 16px;*!*/
+/*    !*border-radius: 16px;*!*/
+/*    color: black;*/
+/*    font-weight: 600;*/
+/*    padding: 16px;*/
+/*    !*transition: color 2s;*!*/
+/*    transition: background-color 1s;*/
+/*    border-radius: 50%;*/
+/*}*/
+
+/*.goToCartBtn:hover {*/
+/*    color: white;*/
+/*    background-color: black;*/
+/*    padding: 16px;*/
+/*    border-radius: 50%;*/
+/*}*/
+
+/*.carousel-control-next, .carousel-control-prev {*/
+/*    width: 10% !important;*/
+/*}*/
+/*.carousel-control-next-icon, .carousel-control-prev-icon {*/
+/*    background-color: gray;*/
+/*    border-radius: 50%;*/
+/*    padding: 32px;*/
+/*}*/
+
+
+.top-plants-background {
+    background-color: #F8E5DA;
+    padding: 16px 0;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+.top-plants-title {
+    text-align: center;
+}
+
+@media screen and (min-width: 992px) {
+    .carousel-inner {
+        display: flex;
+    }
+    .carousel-item {
+        display: block !important;
+        margin-right: 0 !important;
+        flex: 0 0 calc(100%/3);
+    }
+
+    .imageWrapper {
+        height: 23vw;
+    }
+
+    .top-plants-title {
+        padding: 1em;
+        text-align: start;
+    }
+}
+
+.carousel-inner {
+    padding: 1em;
+}
+
+.card {
+    margin: 0 .5em;
+}
+

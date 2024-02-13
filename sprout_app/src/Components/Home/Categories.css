@@ -2,6 +2,18 @@
     background-position: center;
     background-size: cover;
     border-radius: 16px;
+    transition: transform .2s;
+    display: block;
+}
+
+.row:hover .imageCategory {
+    opacity: 0.5;
+}
+
+.imageCategory:hover {
+    opacity: 1 !important;
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 .imagePlants {
@@ -26,6 +38,7 @@
     font-weight: 700;
     letter-spacing: 5px;
     text-transform: uppercase;
+    text-decoration: none;
 
     display: flex;
     align-items: end;
