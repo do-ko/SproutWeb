@@ -1,5 +1,6 @@
 package com.dom.sprout.rest;
 
+import com.dom.sprout.config.JwtService;
 import com.dom.sprout.entity.Plant;
 import com.dom.sprout.service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import java.util.List;
 @RequestMapping("/api/plants")
 public class PlantController {
     private PlantService plantService;
-
     @Autowired
     public PlantController(PlantService plantService) {
         this.plantService = plantService;
@@ -43,6 +43,5 @@ public class PlantController {
 //        Plant plant = plantService.findById(id);
         plantService.deleteById(id);
     }
-
 
 }
