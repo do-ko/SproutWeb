@@ -9,7 +9,7 @@ export const Navigation = ({sticky, fixed}) => {
     return (
         <Navbar id={"navigation-custom"} sticky={sticky} fixed={fixed} expand={"lg"}>
             <Container fluid={"md"}>
-                <Navbar.Brand className={"brand-name-large"}>Sprout</Navbar.Brand>
+                <a className={"navbar-brand brand-name-large"} href={"/"}>Sprout</a>
                 <Navbar.Toggle aria-controls="basic-navbar-nav">
                     <FontAwesomeIcon icon={faBars} />
                 </Navbar.Toggle>
@@ -23,7 +23,7 @@ export const Navigation = ({sticky, fixed}) => {
 
                     </Nav>
                 </Navbar.Collapse>
-                <Navbar.Brand className={"brand-name-small"}>Sprout</Navbar.Brand>
+                <a className={"navbar-brand brand-name-small"} href={"/"}>Sprout</a>
                 <Nav className={"account-links-container"}>
                     <Nav.Link className={"account-link"}>
                         <FontAwesomeIcon icon={faCartShopping} />

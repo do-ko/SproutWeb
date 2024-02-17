@@ -62,3 +62,8 @@
 .register-link:hover {
     color: #6C8D66;
 }
+
+.errmsg {
+    /*background: red;*/
+    color: red;
+}

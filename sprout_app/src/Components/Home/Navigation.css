@@ -12,7 +12,7 @@
     background: white !important;
 }
 
-.navbar-brand {
+.navbar-brand{
     color: #6c8d66 !important;
     text-transform: uppercase;
     font-weight: 800;
@@ -21,6 +21,7 @@
     font-size: 22px;
     line-height: 1.6;
     letter-spacing: 1px;
+    text-decoration: none;
 }
 
 .brand-name-small {
