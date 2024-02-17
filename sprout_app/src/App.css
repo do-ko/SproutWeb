@@ -1,4 +1,3 @@
-
 * {
     font-size: 24px;
 }
@@ -10,7 +9,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /*background-color: gray;*/
 }
 
 .primary-title {
@@ -24,24 +22,43 @@
     font-weight: 600;
 }
 
-
 .centered-text {
     text-align: center;
 }
 
-/*.fill {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    overflow: hidden;*/
-/*    background-color: cornflowerblue;*/
-/*    height: 100%;*/
-/*}*/
+/* LOGIN AND REGISTER */
+.auth-container {
+    background: #E7E7E7;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-/*.fill img {*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    object-fit: cover;*/
-/*    border-radius: 16px;*/
-/*    flex-shrink: 0;*/
-/*}*/
+.form-container {
+    background: white;
+    padding: 16px;
+    border-radius: 16px;
+    margin: 16px;
+    width: 600px;
+}
+
+.form-title {
+    text-align: center;
+}
+
+.register-link-text {
+    margin-top: 32px;
+    color: gray;
+    font-weight: 300;
+}
+
+.register-link {
+    text-decoration: none;
+    color: #595959;
+    font-weight: 400;
+}
+
+.register-link:hover {
+    color: #6C8D66;
+}

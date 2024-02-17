@@ -8,7 +8,7 @@ import {HomeFooter} from "../Components/Home/HomeFooter";
 export const HomePage = () => {
     return(
         <>
-            <Navigation />
+            <Navigation sticky={"top"} fixed={null}/>
             <Header />
             <ChooseUs />
             <Categories />

@@ -5,9 +5,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleUser} from "@fortawesome/free-regular-svg-icons";
 import {faBars, faCartShopping} from "@fortawesome/free-solid-svg-icons";
 
-export const Navigation = () => {
+export const Navigation = ({sticky, fixed}) => {
     return (
-        <Navbar id={"navigation-custom"} sticky={"top"} expand={"lg"}>
+        <Navbar id={"navigation-custom"} sticky={sticky} fixed={fixed} expand={"lg"}>
             <Container fluid={"md"}>
                 <Navbar.Brand className={"brand-name-large"}>Sprout</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav">
@@ -29,7 +29,7 @@ export const Navigation = () => {
                         <FontAwesomeIcon icon={faCartShopping} />
                         <p className={"link-text"}>Cart</p>
                     </Nav.Link>
-                    <Nav.Link className={"account-link"}>
+                    <Nav.Link href={"/login"} className={"account-link"}>
                         <FontAwesomeIcon icon={faCircleUser}/>
                         <p className={"link-text"}>Sign In</p>
                     </Nav.Link>
