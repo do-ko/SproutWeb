@@ -5,28 +5,35 @@ import axios from "../api/axios";
 import AuthContext from "../context/AuthProvider";
 import {Navigate} from "react-router-dom";
 
-export const LogInPage = () => {
+export const RegisterPage = () => {
     const {setAuth} = useContext(AuthContext);
     const errRef = useRef();
     const [errorMsg, setErrorMsg] = useState("")
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [success, setSuccess] = useState(false)
 
     useEffect(() => {
         setErrorMsg("");
-    }, [email, password])
+    }, [firstName, lastName, email, password])
 
+    const onInputFirstName = ({target: {value}}) => setFirstName(value)
+    const onInputLastName = ({target: {value}}) => setLastName(value)
     const onInputEmail = ({target: {value}}) => setEmail(value)
     const onInputPass = ({target: {value}}) => setPassword(value)
+
     const onFormSubmit = async e => {
         e.preventDefault()
         console.log(email)
         console.log(password)
+        console.log(firstName)
+        console.log(lastName)
 
         try {
-            const response = await axios.post("/api/auth/authenticate",
-                JSON.stringify({email: email, password: password}),
+            const response = await axios.post("/api/auth/register",
+                JSON.stringify({firstname: firstName, lastname: lastName, email: email, password: password}),
                 {
                     headers: {"Content-Type": "application/json"},
                 });
@@ -34,12 +41,13 @@ export const LogInPage = () => {
             setAuth({email, password, accessToken});
             setEmail("")
             setPassword("")
-            // return redirect("../")
+            setFirstName("")
+            setLastName("")
             setSuccess(true)
         } catch (e) {
             console.log("Error")
             console.log(e)
-            setErrorMsg("Wrong email or password.")
+            setErrorMsg("Registration failed.")
         }
     }
 
@@ -52,12 +60,20 @@ export const LogInPage = () => {
                     <div className={"auth-container"}>
                         <div className={"form-container"}>
                             <p className={"form-title secondary-title"}>
-                                Login
+                                Register
                             </p>
                             <p ref={errRef} className={errorMsg ? "errmsg" : "offscreen"}
                                aria-live={"assertive"}>{errorMsg}</p>
 
                             <Form onSubmit={onFormSubmit}>
+                                <Form.Group className={"mb-3"} controlId={"firstNameGroup"}>
+                                    <Form.Control placeholder={"First Name"} onChange={onInputFirstName}
+                                                  value={firstName}/>
+                                </Form.Group>
+                                <Form.Group className={"mb-3"} controlId={"lastNameGroup"}>
+                                    <Form.Control placeholder={"Last Name"} onChange={onInputLastName}
+                                                  value={lastName}/>
+                                </Form.Group>
                                 <Form.Group className={"mb-3"} controlId={"formGroupEmail"}>
                                     <Form.Control type={"email"} placeholder={"Email"} onChange={onInputEmail}
                                                   value={email}/>
@@ -68,17 +84,14 @@ export const LogInPage = () => {
                                 </Form.Group>
                                 <Form.Group as={"div"}>
                                     <Button variant={"custom"} size={"lg"} style={{width: "100%"}}
-                                            type="submit">SIGN IN</Button>
+                                            type="submit">REGISTER</Button>
                                 </Form.Group>
                             </Form>
 
-                            <p className={"register-link-text"}>New here? <a className={"register-link"}
-                                                                             href={"/register"}>Create
-                                an
-                                account</a></p>
+                            <p className={"register-link-text"}>Already have an account? <a className={"register-link"}
+                                                                                            href={"/login"}>Sign in</a>
+                            </p>
                         </div>
-                        {/*Log In page*/}
-
                     </div>
                 </>
 
