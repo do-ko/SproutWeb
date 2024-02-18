@@ -6,11 +6,11 @@ const AuthContext = createContext({})
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({});
-    const [cookies, setCookie] = useCookies(['token']);
+    const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
     const logout = () => {
         setAuth({})
-        setCookie('token', "")
+        removeCookie('token')
     }
 
     return (

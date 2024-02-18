@@ -62,6 +62,37 @@
     color: #6C8D66 !important;
 }
 
+.cartIcon {
+    /*background: #6C8D66;*/
+    position: relative;
+}
+
+.cartBadge {
+    position: absolute;
+    background: red;
+    color: white;
+    right: -20%;
+    bottom: -20%;
+    font-size: 16px;
+    font-weight: 600;
+    /*width: 20px;*/
+    /*height: 20px;*/
+    /*padding: 16px;*/
+    border-radius: 6px;
+    line-height: 18px;
+    padding: 1px 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.account-link:hover .cartBadge {
+    /*display: none;*/
+    transition: opacity 250ms ease-in-out;
+    opacity: 0;
+}
+
 .navbar-toggler {
     /*background: red !important;*/
     border: none !important;

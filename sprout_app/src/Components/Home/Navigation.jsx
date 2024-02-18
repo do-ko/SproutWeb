@@ -3,7 +3,7 @@ import {Container, Nav} from "react-bootstrap";
 import "./Navigation.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleUser} from "@fortawesome/free-regular-svg-icons";
-import {faArrowRightFromBracket, faBars, faCartShopping} from "@fortawesome/free-solid-svg-icons";
+import {faArrowRightFromBracket, faBars, faBasketShopping} from "@fortawesome/free-solid-svg-icons";
 import {useContext, useEffect, useState} from "react";
 import AuthContext from "../../context/AuthProvider";
 import {useCookies} from "react-cookie";
@@ -11,7 +11,7 @@ import {useCookies} from "react-cookie";
 export const Navigation = ({sticky, fixed}) => {
     const [isAuthorized, setIsAuthorized] = useState(false);
     const {auth, logout} = useContext(AuthContext);
-    const [cookies, setCookie] = useCookies(['token']);
+    const [cookies, setCookie] = useCookies(['token', 'cart']);
 
 
     useEffect(() => {
@@ -40,7 +40,12 @@ export const Navigation = ({sticky, fixed}) => {
                 <a className={"navbar-brand brand-name-small"} href={"/"}>Sprout</a>
                 <Nav className={"account-links-container"}>
                     <Nav.Link className={"account-link"}>
-                        <FontAwesomeIcon icon={faCartShopping}/>
+                        <div className={"cartIcon"}>
+                            <FontAwesomeIcon icon={faBasketShopping}/>
+                            {!cookies.token ? (cookies.cart ? <div className={"cartBadge"}>{cookies.cart.length}</div> : <></>) : <></>}
+                        </div>
+
+
                         <p className={"link-text"}>Cart</p>
                     </Nav.Link>
                     {!isAuthorized ? <Nav.Link href={"/login"} className={"account-link"}>
