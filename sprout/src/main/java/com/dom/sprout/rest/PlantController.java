@@ -12,11 +12,13 @@ import java.util.List;
 @RequestMapping("/api/plants")
 public class PlantController {
     private PlantService plantService;
+
     @Autowired
     public PlantController(PlantService plantService) {
         this.plantService = plantService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("")
     public List<Plant> findAll(){
         return plantService.findAll();

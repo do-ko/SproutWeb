@@ -15,8 +15,6 @@ export const Navigation = ({sticky, fixed}) => {
         if (Object.keys(auth).length === 0){
             setIsAuthorized(false)
         } else setIsAuthorized(true)
-        console.log("auth")
-        console.log(auth)
     }, [auth])
 
     return (
@@ -29,7 +27,7 @@ export const Navigation = ({sticky, fixed}) => {
                 <Navbar.Collapse id="basic-navbar-nav" className={"collapsable-menu"}>
                     <Nav>
                         <Container className={"store-links-container"}>
-                            <Nav.Link>plants</Nav.Link>
+                            <Nav.Link href={"/plants"}>plants</Nav.Link>
                             <Nav.Link>ground</Nav.Link>
                             <Nav.Link>pots</Nav.Link>
                         </Container>

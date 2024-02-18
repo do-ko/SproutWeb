@@ -67,3 +67,62 @@
     /*background: red;*/
     color: red;
 }
+
+/*PRODUCTS*/
+.productsContainer {
+    background: red;
+    display: flex;
+    height: calc(100vh - 87px);
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.filterMenu {
+    background: yellow;
+    width: 250px;
+}
+
+.searchContainer {
+    background-color: gold;
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search {
+    width: 95%;
+    border: 2px solid #000;
+    border-radius: 2em;
+    overflow: hidden;
+    font-size: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+
+}
+
+.searchButton {
+    border: none;
+    outline: none;
+    width: 15%;
+    font-size: 0.5rem;
+    padding-right: 0.5em;
+    color: gray;
+    display: grid;
+    place-content: center;
+    background-color: #fff;
+}
+
+.searchInput {
+    padding: 0.5em 0.5em 0.5em 1em;
+    width: 85%;
+    background-color: #fff;
+    border: none;
+    outline: none;
+}
+
+.products {
+    background: green;
+    height: 100%;
+}

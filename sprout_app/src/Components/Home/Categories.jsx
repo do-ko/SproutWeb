@@ -8,7 +8,7 @@ export const Categories = () => {
             <Row className={"row-cols-1 row-cols-lg-2"} style={{width: "80%", height: "70%"}}>
                 <Col lg={8}>
                     <Stack gap={3} style={{height: "100%"}}>
-                        <a href={"/"} className={"imageCategory imagePlants textCategory"}>
+                        <a href={"/plants"} className={"imageCategory imagePlants textCategory"}>
                             Plants
                         </a>
                         <a href={"/"} className={"imageCategory imageGround textCategory"}>

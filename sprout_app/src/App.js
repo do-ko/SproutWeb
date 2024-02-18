@@ -6,6 +6,7 @@ import {LogInPage} from "./pages/LogInPage";
 import {useContext} from "react";
 import AuthContext from "./context/AuthProvider";
 import {RegisterPage} from "./pages/RegisterPage";
+import {PlantsPage} from "./pages/PlantsPage";
 
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
         {
             path: "/register",
             element: <RegisterPage/>
+        },
+        {
+            path: "/plants",
+            element: <PlantsPage/>
         }
     ]);
 

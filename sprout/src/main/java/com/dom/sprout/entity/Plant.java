@@ -11,13 +11,13 @@ public class Plant {
     private Integer plantId;
 
     @Column(name = "plant_name", nullable = false)
-    private String plantName;
+    private String name;
 
     @Column(name = "price", nullable = false, precision = 2)
     private Double price;
 
-    public Plant(String plantName, Double price) {
-        this.plantName = plantName;
+    public Plant(String name, Double price) {
+        this.name = name;
         this.price = price;
     }
 
@@ -33,12 +33,12 @@ public class Plant {
         this.plantId = plantId;
     }
 
-    public String getPlantName() {
-        return plantName;
+    public String getName() {
+        return name;
     }
 
-    public void setPlantName(String plantName) {
-        this.plantName = plantName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Double getPrice() {
@@ -53,7 +53,7 @@ public class Plant {
     public String toString() {
         return "Plant{" +
                 "plantId=" + plantId +
-                ", plantName='" + plantName + '\'' +
+                ", plantName='" + name + '\'' +
                 ", price=" + price +
                 '}';
     }
