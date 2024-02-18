@@ -5,15 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {AuthProvider} from "./context/AuthProvider";
 import {PlantProvider} from "./context/PlantProvider";
+import {CookiesProvider} from "react-cookie";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <AuthProvider>
-            <PlantProvider>
-                <App/>
-            </PlantProvider>
-        </AuthProvider>
+        <CookiesProvider defaultSetOptions={{ path: '/' }}>
+            <AuthProvider>
+                <PlantProvider>
+                    <App/>
+                </PlantProvider>
+            </AuthProvider>
+        </CookiesProvider>
     </React.StrictMode>
 );
 

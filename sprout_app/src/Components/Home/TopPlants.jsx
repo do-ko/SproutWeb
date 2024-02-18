@@ -69,7 +69,7 @@ export const TopPlants = () => {
                     <Carousel.Item>
                         <Card ref={myRef1}>
                             <div className={"imageWrapper plant1"}>
-                                <Card.Img variant={"top"} src={plant1}/>
+                                <Card.Img className={"topImage"} variant={"top"} src={plant1}/>
                             </div>
                             <Card.Body>
                                 <Card.Title>Philodendron</Card.Title>
@@ -83,7 +83,7 @@ export const TopPlants = () => {
                     <Carousel.Item>
                         <Card ref={myRef2}>
                             <div className={"imageWrapper plant2"}>
-                                <Card.Img variant={"top"} src={plant2}/>
+                                <Card.Img className={"topImage"} variant={"top"} src={plant2}/>
                             </div>
                             <Card.Body>
                                 <Card.Title>Monstera</Card.Title>
@@ -98,7 +98,7 @@ export const TopPlants = () => {
                     <Carousel.Item>
                         <Card ref={myRef3}>
                             <div className={"imageWrapper plant3"}>
-                                <Card.Img variant={"top"} src={plant3}/>
+                                <Card.Img className={"topImage"} variant={"top"} src={plant3}/>
                             </div>
                             <Card.Body>
                                 <Card.Title>Aloe Vera</Card.Title>
@@ -112,7 +112,7 @@ export const TopPlants = () => {
                     <Carousel.Item>
                         <Card ref={myRef4}>
                             <div className={"imageWrapper plant4"}>
-                                <Card.Img variant={"top"} src={plant4}/>
+                                <Card.Img className={"topImage"} variant={"top"} src={plant4}/>
                             </div>
                             <Card.Body>
                                 <Card.Title>Musa</Card.Title>
@@ -127,7 +127,7 @@ export const TopPlants = () => {
                     <Carousel.Item>
                         <Card ref={myRef0}>
                             <div className={"imageWrapper plant5"}>
-                                <Card.Img variant={"top"} src={plant5}/>
+                                <Card.Img className={"topImage"} variant={"top"} src={plant5}/>
                             </div>
                             <Card.Body>
                                 <Card.Title>Bird's Nest Fern</Card.Title>

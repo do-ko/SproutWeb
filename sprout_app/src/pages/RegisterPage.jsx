@@ -4,6 +4,7 @@ import {useContext, useEffect, useRef, useState} from "react";
 import axios from "../api/axios";
 import AuthContext from "../context/AuthProvider";
 import {Navigate} from "react-router-dom";
+import {useCookies} from "react-cookie";
 
 export const RegisterPage = () => {
     const {setAuth} = useContext(AuthContext);
@@ -14,6 +15,7 @@ export const RegisterPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("")
     const [success, setSuccess] = useState(false)
+    const [cookies, setCookie] = useCookies(['token']);
 
     useEffect(() => {
         setErrorMsg("");
@@ -39,6 +41,7 @@ export const RegisterPage = () => {
                 });
             const accessToken = response.data.token;
             setAuth({email, password, accessToken});
+            setCookie('token', accessToken);
             setEmail("")
             setPassword("")
             setFirstName("")
