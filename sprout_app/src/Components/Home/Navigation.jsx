@@ -12,6 +12,7 @@ export const Navigation = ({sticky, fixed}) => {
     const [isAuthorized, setIsAuthorized] = useState(false);
     const {auth, logout, cart} = useContext(AuthContext);
     const [cookies, setCookie] = useCookies(['token', 'cart']);
+    const [localCart, setLocalCart] = useState({})
 
 
     useEffect(() => {
@@ -19,6 +20,10 @@ export const Navigation = ({sticky, fixed}) => {
             setIsAuthorized(false)
         } else setIsAuthorized(true)
     }, [auth])
+
+    useEffect(() => {
+        setLocalCart(JSON.parse(localStorage.getItem('cart')))
+    }, [JSON.parse(localStorage.getItem('cart'))])
 
     return (
         <Navbar id={"navigation-custom"} sticky={sticky} fixed={fixed} expand={"lg"}>
@@ -42,7 +47,9 @@ export const Navigation = ({sticky, fixed}) => {
                     <Nav.Link href={"/cart"} className={"account-link"}>
                         <div className={"cartIcon"}>
                             <FontAwesomeIcon icon={faBasketShopping}/>
-                            {!cookies.token ? (cookies.cart ? <div className={"cartBadge"}>{cookies.cart.length}</div> : <></>) : <div className={"cartBadge"}>{cart.total}</div>}
+                            {!cookies.token ? (localCart ? <div
+                                    className={"cartBadge"}>{localCart.total}</div> : <></>) :
+                                <div className={"cartBadge"}>{cart.total}</div>}
                         </div>
                         <p className={"link-text"}>Cart</p>
                     </Nav.Link>
