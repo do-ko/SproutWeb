@@ -31,7 +31,7 @@ public class PlantController {
 
     @PostMapping("")
     public Plant addPlant(@RequestBody Plant plant){
-        plant.setPlantId(0);
+        plant.setId(0);
         return plantService.save(plant);
     }
 

@@ -1,14 +1,25 @@
 package com.dom.sprout.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "Plants")
 public class Plant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "plant_id")
-    private Integer plantId;
+    @Column(name = "id")
+    private Integer id;
 
     @Column(name = "plant_name", nullable = false)
     private String name;
@@ -16,44 +27,20 @@ public class Plant {
     @Column(name = "price", nullable = false, precision = 2)
     private Double price;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "item")
+    private List<CartPlants> users;
+
     public Plant(String name, Double price) {
         this.name = name;
-        this.price = price;
-    }
-
-    public Plant() {
-
-    }
-
-    public Integer getPlantId() {
-        return plantId;
-    }
-
-    public void setPlantId(Integer plantId) {
-        this.plantId = plantId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
         this.price = price;
     }
 
     @Override
     public String toString() {
         return "Plant{" +
-                "plantId=" + plantId +
-                ", plantName='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", price=" + price +
                 '}';
     }

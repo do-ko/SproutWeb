@@ -8,7 +8,7 @@ import {useCookies} from "react-cookie";
 
 
 export const LogInPage = () => {
-    const {setAuth} = useContext(AuthContext);
+    const {setAuth, setCart} = useContext(AuthContext);
     const errRef = useRef();
     const [errorMsg, setErrorMsg] = useState("")
     const [email, setEmail] = useState("");
@@ -28,21 +28,33 @@ export const LogInPage = () => {
         console.log(password)
 
         try {
-            const response = await axios.post("/api/auth/authenticate",
+            const responseAuth = await axios.post("/api/auth/authenticate",
                 JSON.stringify({email: email, password: password}),
                 {
                     headers: {"Content-Type": "application/json"},
                 });
-            const accessToken = response.data.token;
-            setAuth({email, password, accessToken});
+            const accessToken = responseAuth.data.token;
+
+            const responseCart = await axios.get("/api/cart",
+                {
+                    headers: {
+                        "Authorization": ("Bearer " + accessToken)
+                    },
+                });
+
+            const cart = responseCart.data;
+            setAuth({accessToken});
             setCookie('token', accessToken);
+            setCart(cart);
             setEmail("")
             setPassword("")
             setSuccess(true)
         } catch (e) {
             console.log("Error")
             console.log(e)
-            setErrorMsg("Wrong email or password.")
+            if (e.request.responseURL === "http://localhost:8083/api/auth/authenticate") {
+                setErrorMsg("Wrong email or password.")
+            }
         }
     }
 

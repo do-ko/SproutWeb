@@ -30,12 +30,13 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/api/auth/**").permitAll()
-                                .requestMatchers(HttpMethod.POST,"/api/plants/**").hasAuthority(Role.ADMIN.name())
-                                .requestMatchers(HttpMethod.PUT,"/api/plants/**").hasAuthority(Role.ADMIN.name())
-                                .requestMatchers(HttpMethod.DELETE,"/api/plants/**").hasAuthority(Role.ADMIN.name())
-                                .requestMatchers("/api/plants/**").permitAll()
-                                .anyRequest().authenticated()
+//                                .requestMatchers("/api/auth/**").permitAll()
+//                                .requestMatchers(HttpMethod.POST,"/api/plants/**").hasAuthority(Role.ADMIN.name())
+//                                .requestMatchers(HttpMethod.PUT,"/api/plants/**").hasAuthority(Role.ADMIN.name())
+//                                .requestMatchers(HttpMethod.DELETE,"/api/plants/**").hasAuthority(Role.ADMIN.name())
+//                                .requestMatchers("/api/plants/**").permitAll()
+//                                .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 )
                 .sessionManagement(sessionManagement ->
                         sessionManagement

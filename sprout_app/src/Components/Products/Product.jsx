@@ -4,14 +4,52 @@ import "./Product.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {useCookies} from "react-cookie";
+import axios from "../../api/axios";
+import {useContext} from "react";
+import AuthContext from "../../context/AuthProvider";
 
 export const Product = ({product}) => {
-    const [cookies, setCookie, removeCookie] = useCookies(['token', 'cart']);
+    const [cookies] = useCookies(['token', 'cart']);
+    const {setCart} = useContext(AuthContext);
 
-    const handleAddToCart = () => {
-        if (cookies.cart) {
-            setCookie('cart', [...cookies.cart, product], {expires: (new Date(Date.now() + 86400000))})
-        } else setCookie('cart', [product],{expires: (new Date(Date.now() + 86400000))})
+    const handleAddToCart = async () => {
+        if (cookies.token) {
+            try {
+                const responseCart = await axios.post("/api/cart/add",
+                    JSON.stringify({type: "PLANT", id: product.id}),
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": ("Bearer " + cookies.token)
+                        },
+                    });
+                setCart(responseCart.data);
+            } catch (e) {
+                console.log("Failed to add item to cart")
+            }
+
+        } else {
+            const cart = JSON.parse(localStorage.getItem('cart'))
+            if (cart) {
+                const plants = [...cart.plants];
+                if (plants.some(item => item.plant.id === product.id)) {
+                    //     if product already in cart
+                    const item = plants.filter(item => item.plant.id === product.id)[0]
+                    const index = plants.indexOf(item)
+                    plants.splice(index, 1)
+                    plants.push({"plant": product, "counter": item.counter + 1})
+                    localStorage.setItem('cart', JSON.stringify({"total": cart.total + 1, "plants": plants}))
+                } else {
+                    localStorage.setItem('cart', JSON.stringify({
+                        "total": cart.total + 1,
+                        "plants": [...cart.plants, {"plant": product, "counter": 1}]
+                    }))
+                }
+            } else {
+                const newCart = {"total": 1, "plants": [{"plant": product, "counter": 1}]}
+                localStorage.setItem('cart', JSON.stringify(newCart))
+            }
+        }
     }
 
     return (
@@ -33,8 +71,9 @@ export const Product = ({product}) => {
                 <div className={"btnContainer"}>
                     <Button onClick={handleAddToCart} className={"cartBtnLarge"} variant={"custom2"} size={"sm"}>Add to
                         cart</Button>
-                    <Button className={"cartBtnSmall"} variant={"custom2"} size={"sm"}> <FontAwesomeIcon
-                        icon={faCartShopping}/>
+                    <Button onClick={handleAddToCart} className={"cartBtnSmall"} variant={"custom2"} size={"sm"}>
+                        <FontAwesomeIcon
+                            icon={faCartShopping}/>
                     </Button>
 
                 </div>

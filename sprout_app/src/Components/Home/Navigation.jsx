@@ -10,7 +10,7 @@ import {useCookies} from "react-cookie";
 
 export const Navigation = ({sticky, fixed}) => {
     const [isAuthorized, setIsAuthorized] = useState(false);
-    const {auth, logout} = useContext(AuthContext);
+    const {auth, logout, cart} = useContext(AuthContext);
     const [cookies, setCookie] = useCookies(['token', 'cart']);
 
 
@@ -39,13 +39,11 @@ export const Navigation = ({sticky, fixed}) => {
                 </Navbar.Collapse>
                 <a className={"navbar-brand brand-name-small"} href={"/"}>Sprout</a>
                 <Nav className={"account-links-container"}>
-                    <Nav.Link className={"account-link"}>
+                    <Nav.Link href={"/cart"} className={"account-link"}>
                         <div className={"cartIcon"}>
                             <FontAwesomeIcon icon={faBasketShopping}/>
-                            {!cookies.token ? (cookies.cart ? <div className={"cartBadge"}>{cookies.cart.length}</div> : <></>) : <></>}
+                            {!cookies.token ? (cookies.cart ? <div className={"cartBadge"}>{cookies.cart.length}</div> : <></>) : <div className={"cartBadge"}>{cart.total}</div>}
                         </div>
-
-
                         <p className={"link-text"}>Cart</p>
                     </Nav.Link>
                     {!isAuthorized ? <Nav.Link href={"/login"} className={"account-link"}>

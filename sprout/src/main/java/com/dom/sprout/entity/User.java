@@ -1,5 +1,6 @@
 package com.dom.sprout.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -17,7 +19,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "_user")
+@Table(name = "_user", uniqueConstraints = {@UniqueConstraint(name = "emailUnique", columnNames = {"email"})})
 public class User implements UserDetails {
 
     @Id
@@ -39,6 +41,10 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<CartPlants> plants;
 
     @Override
     public String getPassword() {
@@ -68,5 +74,17 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
     }
 }
