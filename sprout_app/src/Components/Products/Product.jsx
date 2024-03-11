@@ -10,7 +10,7 @@ import AuthContext from "../../context/AuthProvider";
 
 export const Product = ({product}) => {
     const [cookies] = useCookies(['token', 'cart']);
-    const {setCart} = useContext(AuthContext);
+    const {setCart, setTotal} = useContext(AuthContext);
 
     const handleAddToCart = async () => {
         if (cookies.token) {
@@ -37,18 +37,22 @@ export const Product = ({product}) => {
                     const item = plants.filter(item => item.plant.id === product.id)[0]
                     const index = plants.indexOf(item)
                     plants.splice(index, 1)
-                    plants.push({"plant": product, "counter": item.counter + 1})
+                    plants.push({"plant": product, "count": item.count + 1})
                     localStorage.setItem('cart', JSON.stringify({"total": cart.total + 1, "plants": plants}))
                 } else {
                     localStorage.setItem('cart', JSON.stringify({
                         "total": cart.total + 1,
-                        "plants": [...cart.plants, {"plant": product, "counter": 1}]
+                        "plants": [...cart.plants, {"plant": product, "count": 1}]
                     }))
                 }
+                setTotal(cart.total + 1)
             } else {
-                const newCart = {"total": 1, "plants": [{"plant": product, "counter": 1}]}
+                const newCart = {"total": 1, "plants": [{"plant": product, "count": 1}]}
                 localStorage.setItem('cart', JSON.stringify(newCart))
+                setTotal(1)
             }
+            // localStorage.removeItem('cart')
+            // setTotal(0)
         }
     }
 

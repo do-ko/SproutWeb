@@ -9,6 +9,9 @@ export const AuthProvider = ({children}) => {
     const [auth, setAuth] = useState({});
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
     const [cart, setCart] = useState({})
+    const [total, setTotal] = useState(0)
+    const [currentCart, setCurrentCart] = useState({})
+
 
     const logout = () => {
         setAuth({})
@@ -28,11 +31,10 @@ export const AuthProvider = ({children}) => {
             console.log("cart reset")
             console.log(response.data)
         }
-
     }
 
     return (
-        <AuthContext.Provider value={{auth, setAuth, cart, setCart, getCart, logout}}>
+        <AuthContext.Provider value={{auth, setAuth, cart, setCart, getCart, logout, total, setTotal, setCurrentCart, currentCart}}>
             {children}
         </AuthContext.Provider>
     )

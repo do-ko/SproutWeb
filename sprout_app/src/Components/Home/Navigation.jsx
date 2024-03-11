@@ -10,9 +10,9 @@ import {useCookies} from "react-cookie";
 
 export const Navigation = ({sticky, fixed}) => {
     const [isAuthorized, setIsAuthorized] = useState(false);
-    const {auth, logout, cart} = useContext(AuthContext);
+    const {auth, logout, cart, total, setTotal} = useContext(AuthContext);
     const [cookies, setCookie] = useCookies(['token', 'cart']);
-    const [localCart, setLocalCart] = useState({})
+    const [localCartTotal, setLocalCartTotal] = useState(0)
 
 
     useEffect(() => {
@@ -22,7 +22,12 @@ export const Navigation = ({sticky, fixed}) => {
     }, [auth])
 
     useEffect(() => {
-        setLocalCart(JSON.parse(localStorage.getItem('cart')))
+        const cart = JSON.parse(localStorage.getItem('cart'))
+        if (cart){
+            setTotal(cart.total)
+        } else {
+            setTotal(0)
+        }
     }, [JSON.parse(localStorage.getItem('cart'))])
 
     return (
@@ -47,8 +52,8 @@ export const Navigation = ({sticky, fixed}) => {
                     <Nav.Link href={"/cart"} className={"account-link"}>
                         <div className={"cartIcon"}>
                             <FontAwesomeIcon icon={faBasketShopping}/>
-                            {!cookies.token ? (localCart ? <div
-                                    className={"cartBadge"}>{localCart.total}</div> : <></>) :
+                            {!cookies.token ? (total ? <div
+                                    className={"cartBadge"}>{total}</div> : <></>) :
                                 <div className={"cartBadge"}>{cart.total}</div>}
                         </div>
                         <p className={"link-text"}>Cart</p>

@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class Plant {
     @Column(name = "plant_name", nullable = false)
     private String name;
 
-    @Column(name = "price", nullable = false, precision = 2)
+    @Column(name = "price", nullable = false)
     private Double price;
 
     @JsonIgnore
