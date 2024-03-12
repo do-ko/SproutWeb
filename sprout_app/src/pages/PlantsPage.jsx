@@ -1,5 +1,5 @@
 import {Navigation} from "../Components/Home/Navigation";
-import {Col, Row, Stack} from "react-bootstrap";
+import {Col, Form, Row, Stack} from "react-bootstrap";
 import React, {useContext, useEffect, useState} from "react";
 import PlantContext from "../context/PlantProvider";
 import {SearchBar} from "../Components/Products/SearchBar";
@@ -13,6 +13,10 @@ export const PlantsPage = () => {
     const [plants, setPlants] = useState([])
     const [filter, setFilter] = useState(false)
     // const [countries, setCountries] = useState()
+    const [wetFilter, setWetFilter] = useState(false)
+    const [petFilter, setPetFilter] = useState(false)
+    const [sunFilter, setSunFilter] = useState(false)
+    const [dryFilter, setDryFilter] = useState(false)
 
     useEffect(() => {
         getPlants().then(json => {
@@ -23,6 +27,29 @@ export const PlantsPage = () => {
         })
     }, [])
 
+    useEffect(() => {
+        let filterList = []
+        if (wetFilter) filterList.push('wet')
+        if (petFilter) filterList.push('pet')
+        if (sunFilter) filterList.push('sun')
+        if (dryFilter) filterList.push('dry')
+
+
+        if (filterList.length !== 0){
+            console.log(filterList)
+            // setSearchResults(plants)
+            const results = plants.filter((product) => {
+                const tagNames = product.tags.map((tag) => tag.tag.tagName)
+                if (filterList.every(t => tagNames.includes(t))){
+                    return product
+                }
+            })
+            // console.log(results)
+            setSearchResults(results)
+        } else setSearchResults(plants)
+
+    }, [wetFilter, petFilter, dryFilter, sunFilter])
+
     const handleFilter = () => {
         setFilter(!filter)
     }
@@ -31,7 +58,45 @@ export const PlantsPage = () => {
         <>
             <Navigation sticky={null} fixed={"top"}/>
             <div className={"productsContainer"}>
-                <div className={"filterMenu"}>filterMenu</div>
+                <div className={"filterMenu"}>
+                    <h3>Filters</h3>
+                    <Form>
+                        <div key={`checkbox`} className="mb-3">
+                            <Form.Check
+                                inline
+                                label="DRY"
+                                name="group1"
+                                type={"checkbox"}
+                                id={`inline-checkbox-1`}
+                                onChange={() => setDryFilter(!dryFilter)}
+                            />
+                            <Form.Check
+                                inline
+                                label="SUN"
+                                name="group1"
+                                type={"checkbox"}
+                                id={`inline-checkbox-2`}
+                                onChange={() => setSunFilter(!sunFilter)}
+                            />
+                            <Form.Check
+                                inline
+                                label="WET"
+                                name="group1"
+                                type={"checkbox"}
+                                id={`inline-checkbox-2`}
+                                onChange={() => setWetFilter(!wetFilter)}
+                            />
+                            <Form.Check
+                                inline
+                                label="PET"
+                                name="group1"
+                                type={"checkbox"}
+                                id={`inline-checkbox-2`}
+                                onChange={() => setPetFilter(!petFilter)}
+                            />
+                        </div>
+                    </Form>
+                </div>
                 <Stack>
                     <div className={"searchFilterContainer"}>
                         <SearchBar products={plants} setSearchResult={setSearchResults}/>
