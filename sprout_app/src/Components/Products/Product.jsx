@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCartShopping} from "@fortawesome/free-solid-svg-icons";
 import {useCookies} from "react-cookie";
 import axios from "../../api/axios";
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import AuthContext from "../../context/AuthProvider";
 
 export const Product = ({product}) => {
@@ -59,7 +59,7 @@ export const Product = ({product}) => {
     return (
         <div className={"productContainer"}>
             <div className={"productImageContainer"}>
-                <img className={"productImage"} src={plantTest} alt={"image of a product"}/>
+                <img className={"productImage"} src={`http://localhost:8083/api/images/download/${product.imgName}.jpg`} alt={"image of a product"}/>
             </div>
             <div className={"productData"}>
                 <div className={"productTagContainer"}>

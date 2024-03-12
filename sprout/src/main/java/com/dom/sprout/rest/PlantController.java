@@ -5,8 +5,15 @@ import com.dom.sprout.entity.Plant;
 import com.dom.sprout.service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+
+import static java.nio.file.Paths.get;
 
 @RestController
 @RequestMapping("/api/plants")
@@ -30,9 +37,12 @@ public class PlantController {
     }
 
     @PostMapping("")
-    public Plant addPlant(@RequestBody Plant plant){
+    public Plant addPlant(@RequestBody Plant plant) {
         plant.setId(0);
-        return plantService.save(plant);
+        Plant plantDb = plantService.save(plant);
+        plantDb.setImgName("plant_" + plantDb.getId());
+        plantService.save(plantDb);
+        return plantDb;
     }
 
     @PutMapping("")

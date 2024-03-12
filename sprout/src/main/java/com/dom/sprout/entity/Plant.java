@@ -28,13 +28,17 @@ public class Plant {
     @Column(name = "price", nullable = false)
     private Double price;
 
+    @Column(name = "imgName")
+    private String imgName;
+
     @JsonIgnore
     @OneToMany(mappedBy = "item")
     private List<CartPlants> users;
 
-    public Plant(String name, Double price) {
+    public Plant(String name, Double price, String imgName) {
         this.name = name;
         this.price = price;
+        this.imgName = imgName;
     }
 
     @Override
@@ -43,6 +47,7 @@ public class Plant {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
+                ", imgName='" + imgName + '\'' +
                 '}';
     }
 }
