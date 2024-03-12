@@ -35,6 +35,11 @@ public class Plant {
     @OneToMany(mappedBy = "item")
     private List<CartPlants> users;
 
+//    @JsonIgnore
+    @OneToMany(mappedBy = "plant")
+    @JsonManagedReference
+    private List<PlantTags> tags;
+
     public Plant(String name, Double price, String imgName) {
         this.name = name;
         this.price = price;

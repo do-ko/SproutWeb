@@ -63,9 +63,11 @@ export const Product = ({product}) => {
             </div>
             <div className={"productData"}>
                 <div className={"productTagContainer"}>
-                    <div className={"productTag sunTag"}>SUN</div>
-                    <div className={"productTag dryTag"}>DRY</div>
-                    <div className={"productTag petTag"}>PET</div>
+                    {product.tags.length === 0 ? <div className={"productTagEmpty"}/> :
+                        product.tags.map((tag) => {
+                            return <div className={`productTag ${tag.tag.tagName}Tag`}>{tag.tag.tagName}</div>
+                        })
+                    }
                 </div>
 
                 <div className={"namePriceContainer"}>

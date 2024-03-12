@@ -3,7 +3,9 @@ package com.dom.sprout.rest;
 import com.dom.sprout.config.JwtService;
 import com.dom.sprout.entity.Plant;
 import com.dom.sprout.service.PlantService;
+import com.dom.sprout.service.PlantTagsSevice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,10 +21,12 @@ import static java.nio.file.Paths.get;
 @RequestMapping("/api/plants")
 public class PlantController {
     private PlantService plantService;
+    private PlantTagsSevice plantTagsSevice;
 
     @Autowired
-    public PlantController(PlantService plantService) {
+    public PlantController(PlantService plantService, PlantTagsSevice plantTagsSevice) {
         this.plantService = plantService;
+        this.plantTagsSevice = plantTagsSevice;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -54,6 +58,11 @@ public class PlantController {
     public void deleteById(@PathVariable int id){
 //        Plant plant = plantService.findById(id);
         plantService.deleteById(id);
+    }
+
+    @PostMapping("/tag")
+    public ResponseEntity<Plant> addTagToPlant(@RequestBody AddTagToPlantRequest request){
+        return ResponseEntity.ok(plantTagsSevice.addTagToPlant(request));
     }
 
 }

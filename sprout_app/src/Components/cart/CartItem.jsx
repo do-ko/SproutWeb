@@ -62,7 +62,7 @@ export const CartItem = ({product, setCurrentCart, setTotalPrice}) => {
     return(
         <div className={"cartProductContainer"}>
             <div className={"cartProductImageContainer"}>
-                <img src={plantTest} alt={"image of a product"}/>
+                <img src={`http://localhost:8083/api/images/download/${product.plant.imgName}.jpg`} alt={"image of a product"}/>
             </div>
             <div className={"cartProductData"}>
                 <h3 className={"cartProductName"}>{product.plant.name}</h3>
