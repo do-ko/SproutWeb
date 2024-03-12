@@ -114,7 +114,9 @@
     left: 0;
     z-index: 999;
     /*width: 100%;*/
-    background: rebeccapurple;
+    background: #AE9895;
+    padding: 1rem;
+    /*height: min-content;*/
     /*transition: opacity .5s, margin-top .5s, margin-bottom .5s;*/
     opacity: 1;
     transform: translateY(0);

@@ -102,7 +102,48 @@ export const PlantsPage = () => {
                         <SearchBar products={plants} setSearchResult={setSearchResults}/>
                         {/*<Button variant="custom">Primary</Button>*/}
                         <FontAwesomeIcon onClick={handleFilter} icon={faFilter} className={"filterButton"} size={"lg"}/>
-                        {filter ? <div className={"filterMenuSmall"}>Filter menu!!</div> : <></>}
+                        {filter ? <div className={"filterMenuSmall"}>
+                            <Form>
+                                <div key={`checkbox`}>
+                                    <Form.Check
+                                        inline
+                                        label="DRY"
+                                        name="group1"
+                                        type={"checkbox"}
+                                        id={`inline-checkbox-1`}
+                                        checked={dryFilter}
+                                        onChange={() => setDryFilter(!dryFilter)}
+                                    />
+                                    <Form.Check
+                                        inline
+                                        label="SUN"
+                                        name="group1"
+                                        type={"checkbox"}
+                                        id={`inline-checkbox-2`}
+                                        checked={sunFilter}
+                                        onChange={() => setSunFilter(!sunFilter)}
+                                    />
+                                    <Form.Check
+                                        inline
+                                        label="WET"
+                                        name="group1"
+                                        type={"checkbox"}
+                                        id={`inline-checkbox-2`}
+                                        checked={wetFilter}
+                                        onChange={() => setWetFilter(!wetFilter)}
+                                    />
+                                    <Form.Check
+                                        inline
+                                        label="PET"
+                                        name="group1"
+                                        type={"checkbox"}
+                                        id={`inline-checkbox-2`}
+                                        checked={petFilter}
+                                        onChange={() => setPetFilter(!petFilter)}
+                                    />
+                                </div>
+                            </Form>
+                        </div> : <></>}
 
                     </div>
                     <div className={"products"}>
@@ -118,6 +159,5 @@ export const PlantsPage = () => {
                 </Stack>
             </div>
         </>
-        // <div>plants</div>
     )
 }
