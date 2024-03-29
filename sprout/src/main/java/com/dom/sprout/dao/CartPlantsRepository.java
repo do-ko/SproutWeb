@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface CartPlantsRepository extends JpaRepository<CartPlants, CartItemId> {
     List<CartPlants> findByUser(User user);
+    void deleteCartPlantsByUser(User user);
 }

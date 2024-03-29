@@ -32,6 +32,14 @@ public class CartController {
         return ResponseEntity.ok(cartService.addItemToCart(email, request));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @DeleteMapping("/clear")
+    public ResponseEntity<?> clearCart(@RequestHeader("Authorization") String token){
+        String email = jwtService.extractUsername(token.substring(7));
+        cartService.clearCart(email);
+        return ResponseEntity.noContent().build();
+    }
+
 //    @GetMapping("/test")
 //    public void test(@RequestHeader("Authorization") String token){
 //        String email = jwtService.extractUsername(token.substring(7));

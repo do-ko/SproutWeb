@@ -8,13 +8,12 @@ import AuthContext from "./context/AuthProvider";
 import {RegisterPage} from "./pages/RegisterPage";
 import {PlantsPage} from "./pages/PlantsPage";
 import {useCookies} from "react-cookie";
-import axios from "./api/axios";
 import {CartPage} from "./pages/CartPage";
+import {CheckoutPage} from "./pages/CheckoutPage";
 
 
 function App() {
-    const {logout, getCart} = useContext(AuthContext);
-    const [cookies, setCookie] = useCookies(['token']);
+    const {getCart} = useContext(AuthContext);
 
     useEffect(() => {
         getCart();
@@ -39,7 +38,11 @@ function App() {
         },
         {
             path: "/cart",
-            element: <CartPage />
+            element: <CartPage/>
+        },
+        {
+            path: "/checkout",
+            element: <CheckoutPage/>
         }
     ]);
 

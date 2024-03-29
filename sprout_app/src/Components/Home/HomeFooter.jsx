@@ -1,4 +1,4 @@
-import {Button, Col, Container, Form, FormGroup, Modal, Row, Stack} from "react-bootstrap";
+import {Button, Container, Form, Modal, Stack} from "react-bootstrap";
 import "./HomeFooter.css";
 import {useState} from "react";
 
@@ -36,7 +36,11 @@ export const HomeFooter = () => {
                     <div className={"subscribe-container"}>
                         <h3 className={"centered-text"}>Stay in the Loop!</h3>
                         <p className={"centered-text"}>Subscribe for Exclusive Deals and Updates!</p>
-                        <Form onSubmit={() => setModalShow(true)}>
+                        <Form onSubmit={(e) => {
+                            e.preventDefault()
+                            setModalShow(true)
+                        }
+                        }>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Control type="email" placeholder="Enter email"/>
                                 <Form.Text className="text-muted">

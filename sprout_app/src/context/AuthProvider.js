@@ -28,8 +28,6 @@ export const AuthProvider = ({children}) => {
                     },
                 });
             setCart(response.data);
-            console.log("cart reset")
-            console.log(response.data)
         }
     }
 

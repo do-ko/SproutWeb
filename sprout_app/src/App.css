@@ -64,7 +64,6 @@
 }
 
 .errmsg {
-    /*background: red;*/
     color: red;
 }
 
@@ -237,23 +236,17 @@
 
 /* CART */
 .cartDataContainer {
-    /*background: red;*/
     display: flex;
     gap: 1rem;
 }
 
-.cartItems {
-    /*background: yellow;*/
-}
-
 .summaryContainer {
-    /*background: green;*/
     display: flex;
     flex-direction: column;
-    /*align-items: center;*/
     padding: 1.5rem;
     border: solid 3px lightgray;
     height: max-content;
+    width: 450px;
 }
 
 .totalPriceSummary {
@@ -326,8 +319,76 @@
     margin: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
     .cartDataContainer {
         flex-direction: column-reverse;
+        align-items: center;
     }
+}
+
+/* CHECKOUT*/
+
+.checkoutPage {
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+
+}
+
+.addressFormContainer {
+    padding: 1rem;
+    width: 60%;
+}
+
+.breadcrumb-item.active{
+    color: #6C8D66 !important;
+    font-weight: bold;
+}
+
+.breadcrumb-item > a {
+    color: rgb(33, 37, 41) !important;
+    text-decoration: none;
+    cursor: auto;
+}
+
+.clickableCrumb > a {
+    cursor: pointer;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">" !important;
+}
+
+.form-check {
+    padding: 0.5rem;
+}
+
+.form-check > input {
+    float: none;
+    border-color: #6668;
+
+}
+
+.form-check > input:checked {
+    background-color: #6C8D66;
+    border-color: #6C8D66;
+}
+
+.form-check > input:focus {
+    border-color: #6668 !important;
+    outline: 0;
+    box-shadow: none !important;
+}
+
+.form-check > label {
+    margin-left: 1rem;
+}
+
+@media screen and (max-width: 992px) {
+    .addressFormContainer{
+        width: 100%;
+    }
+}
+
+.orderData > p{
+    margin: 5px;
 }

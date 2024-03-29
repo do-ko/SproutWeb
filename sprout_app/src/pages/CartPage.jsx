@@ -78,7 +78,7 @@ export const CartPage = () => {
                             <p>ORDER TOTAL</p>
                             <p>{totalPrice}zł</p>
                         </div>
-                        <Button variant={"custom"} href={"/"} size={"lg"}>
+                        <Button variant={"custom"} href={"/checkout"} size={"lg"}>
                             proceed to checkout
                         </Button>
                     </div>

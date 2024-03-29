@@ -6,6 +6,7 @@ import com.dom.sprout.dao.UserRepository;
 import com.dom.sprout.entity.*;
 import com.dom.sprout.rest.AddItemRequest;
 import com.dom.sprout.rest.CartResponse;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -64,5 +65,11 @@ public class CartService {
                 .plants(plants)
                 .total(total)
                 .build();
+    }
+
+    @Transactional
+    public void clearCart(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow();
+        cartPlantsRepository.deleteCartPlantsByUser(user);
     }
 }
