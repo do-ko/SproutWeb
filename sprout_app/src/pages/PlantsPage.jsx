@@ -83,7 +83,7 @@ export const PlantsPage = () => {
                                 label="WET"
                                 name="group1"
                                 type={"checkbox"}
-                                id={`inline-checkbox-2`}
+                                id={`inline-checkbox-3`}
                                 onChange={() => setWetFilter(!wetFilter)}
                             />
                             <Form.Check
@@ -91,7 +91,7 @@ export const PlantsPage = () => {
                                 label="PET"
                                 name="group1"
                                 type={"checkbox"}
-                                id={`inline-checkbox-2`}
+                                id={`inline-checkbox-4`}
                                 onChange={() => setPetFilter(!petFilter)}
                             />
                         </div>
@@ -128,7 +128,7 @@ export const PlantsPage = () => {
                                         label="WET"
                                         name="group1"
                                         type={"checkbox"}
-                                        id={`inline-checkbox-2`}
+                                        id={`inline-checkbox-3`}
                                         checked={wetFilter}
                                         onChange={() => setWetFilter(!wetFilter)}
                                     />
@@ -137,7 +137,7 @@ export const PlantsPage = () => {
                                         label="PET"
                                         name="group1"
                                         type={"checkbox"}
-                                        id={`inline-checkbox-2`}
+                                        id={`inline-checkbox-4`}
                                         checked={petFilter}
                                         onChange={() => setPetFilter(!petFilter)}
                                     />
