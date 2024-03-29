@@ -5,22 +5,44 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useCookies} from "react-cookie";
 import {useContext} from "react";
 import AuthContext from "../../context/AuthProvider";
+import axios from "../../api/axios";
 
 export const CartItem = ({product, setCurrentCart, setTotalPrice}) => {
     const [cookies] = useCookies(['token', 'cart']);
     const {setCart, setTotal} = useContext(AuthContext);
 
-    const handleDecreaseCount = () => {
+    const handleDecreaseCount = async () => {
         console.log("decrease")
-        if (cookies.token){
-        //     if logged in
+        if (cookies.token) {
+            //     if logged in
+            try {
+                const responseCart = await axios.post("/api/cart/remove",
+                    JSON.stringify({type: "PLANT", id: product.plant.id}),
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": ("Bearer " + cookies.token)
+                        },
+                    });
+                let cart = responseCart.data
+                setCurrentCart(cart);
+                let tempTotal = 0
+                cart.plants.forEach((item) => {
+                    if (item.plant.id === product.plant.id) {
+                        tempTotal += item.count * item.plant.price
+                    }
+                })
+                setTotalPrice(tempTotal)
+            } catch (e) {
+                console.log("Failed to add item to cart")
+            }
         } else {
-        // if local cart used
+            // if local cart used
             const cart = JSON.parse(localStorage.getItem('cart'))
             let tempTotal = 0
             cart.plants.forEach((item) => {
-                if (item.plant.id === product.plant.id){
-                    if (item.count === 1){
+                if (item.plant.id === product.plant.id) {
+                    if (item.count === 1) {
                         const index = cart.plants.indexOf(item)
                         cart.plants.splice(index, 1)
                     } else {
@@ -37,16 +59,37 @@ export const CartItem = ({product, setCurrentCart, setTotalPrice}) => {
         }
     }
 
-    const handleIncreaseCount = () => {
+    const handleIncreaseCount = async () => {
         console.log("increase")
-        if (cookies.token){
+        if (cookies.token) {
             //     if logged in
+            try {
+                const responseCart = await axios.post("/api/cart/add",
+                    JSON.stringify({type: "PLANT", id: product.plant.id}),
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": ("Bearer " + cookies.token)
+                        },
+                    });
+                let cart = responseCart.data
+                setCurrentCart(cart);
+                let tempTotal = 0
+                cart.plants.forEach((item) => {
+                    if (item.plant.id === product.plant.id) {
+                        tempTotal += item.count * item.plant.price
+                    }
+                })
+                setTotalPrice(tempTotal)
+            } catch (e) {
+                console.log("Failed to add item to cart")
+            }
         } else {
             // if local cart used
             const cart = JSON.parse(localStorage.getItem('cart'))
             let tempTotal = 0
             cart.plants.forEach((item) => {
-                if (item.plant.id === product.plant.id){
+                if (item.plant.id === product.plant.id) {
                     item.count++
                     tempTotal += item.count * item.plant.price
                     cart.total++

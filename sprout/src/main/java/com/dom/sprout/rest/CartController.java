@@ -27,9 +27,16 @@ public class CartController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/add")
-    public ResponseEntity<CartResponse> addItemToCart(@RequestHeader("Authorization") String token, @RequestBody AddItemRequest request){
+    public ResponseEntity<CartResponse> addItemToCart(@RequestHeader("Authorization") String token, @RequestBody CartItemRequest request){
         String email = jwtService.extractUsername(token.substring(7));
         return ResponseEntity.ok(cartService.addItemToCart(email, request));
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("/remove")
+    public ResponseEntity<CartResponse> removeItemFromCart(@RequestHeader("Authorization") String token, @RequestBody CartItemRequest request){
+        String email = jwtService.extractUsername(token.substring(7));
+        return ResponseEntity.ok(cartService.removeItemFromCart(email, request));
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
