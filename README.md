@@ -42,3 +42,7 @@ to start backend navigate to **sprout** directory and run following command:
 ```
 ./mvnw spring-boot:run
 ```
+
+# Progress Log
+**30.03.2024** - store has a working plant ordering procedure, but is missing ground and pot items pages.
+Orders are currently not stored in the dataabase due to possible issues with later implementation of more product types.
