@@ -6,27 +6,28 @@ import com.dom.sprout.dao.TagRepository;
 import com.dom.sprout.entity.Plant;
 import com.dom.sprout.entity.PlantTags;
 import com.dom.sprout.entity.Tag;
-import com.dom.sprout.rest.AddTagToPlantRequest;
+import com.dom.sprout.rest.AddTagToItemRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PlantTagsSevice {
+public class PlantTagsService {
     private final PlantTagsRepository plantTagsRepository;
     private final PlantRepository plantRepository;
     private final TagRepository tagRepository;
+
     @Autowired
-    public PlantTagsSevice(PlantTagsRepository plantTagsRepository, PlantRepository plantRepository, TagRepository tagRepository) {
+    public PlantTagsService(PlantTagsRepository plantTagsRepository, PlantRepository plantRepository, TagRepository tagRepository) {
         this.plantTagsRepository = plantTagsRepository;
         this.plantRepository = plantRepository;
         this.tagRepository = tagRepository;
     }
 
-    public Plant addTagToPlant(AddTagToPlantRequest request){
-        Plant plant = plantRepository.findById(request.getPlant_id()).orElseThrow();
+    public Plant addTagToPlant(AddTagToItemRequest request) {
+        Plant plant = plantRepository.findById(request.getItem_id()).orElseThrow();
         Tag tag = tagRepository.findById(request.getTag_id()).orElseThrow();
         PlantTags plantTags = new PlantTags(tag, plant);
         plantTagsRepository.save(plantTags);
-        return plantRepository.findById(request.getPlant_id()).orElseThrow();
+        return plantRepository.findById(request.getItem_id()).orElseThrow();
     }
 }

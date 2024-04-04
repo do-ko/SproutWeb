@@ -3,25 +3,25 @@ package com.dom.sprout.entity;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class PlantTagId implements Serializable {
+public class TagId implements Serializable {
 
-    private int plant;
+    private int item;
     private int tag;
 
-    public PlantTagId() {
+    public TagId() {
     }
 
-    public PlantTagId(int plant, int tag) {
-        this.plant = plant;
+    public TagId(int item, int tag) {
+        this.item = item;
         this.tag = tag;
     }
 
-    public int getPlant() {
-        return plant;
+    public int getItem() {
+        return item;
     }
 
-    public void setPlant(int plant) {
-        this.plant = plant;
+    public void setItem(int item) {
+        this.item = item;
     }
 
     public int getTag() {
@@ -34,8 +34,8 @@ public class PlantTagId implements Serializable {
 
     @Override
     public String toString() {
-        return "PlantTagId{" +
-                "plant=" + plant +
+        return "TagId{" +
+                "item=" + item +
                 ", tag=" + tag +
                 '}';
     }
@@ -44,12 +44,12 @@ public class PlantTagId implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PlantTagId that = (PlantTagId) o;
-        return plant == that.plant && tag == that.tag;
+        TagId that = (TagId) o;
+        return item == that.item && tag == that.tag;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(plant, tag);
+        return Objects.hash(item, tag);
     }
 }

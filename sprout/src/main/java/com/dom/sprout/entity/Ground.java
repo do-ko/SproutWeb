@@ -11,14 +11,14 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "Plants")
-public class Plant {
+@Table(name = "Grounds")
+public class Ground {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "plant_name", nullable = false)
+    @Column(name = "ground_name", nullable = false)
     private String name;
 
     @Column(name = "price", nullable = false)
@@ -29,14 +29,14 @@ public class Plant {
 
     @JsonIgnore
     @OneToMany(mappedBy = "item")
-    private List<CartPlants> users;
+    private List<CartGrounds> users;
 
     //    @JsonIgnore
     @OneToMany(mappedBy = "item")
     @JsonManagedReference
-    private List<PlantTags> tags;
+    private List<GroundTags> tags;
 
-    public Plant(String name, Double price, String imgName) {
+    public Ground(String name, Double price, String imgName) {
         this.name = name;
         this.price = price;
         this.imgName = imgName;
@@ -44,7 +44,7 @@ public class Plant {
 
     @Override
     public String toString() {
-        return "Plant{" +
+        return "Ground{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +

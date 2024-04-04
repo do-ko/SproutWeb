@@ -1,5 +1,6 @@
 package com.dom.sprout.rest;
 
+import com.dom.sprout.entity.CartItemGround;
 import com.dom.sprout.entity.CartItemPlant;
 import com.dom.sprout.entity.CartPlants;
 import com.dom.sprout.entity.Plant;
@@ -17,4 +18,6 @@ import java.util.List;
 public class CartResponse {
     private int total;
     private List<CartItemPlant> plants;
+    private List<CartItemGround> grounds;
+
 }

@@ -1,18 +1,12 @@
 package com.dom.sprout.rest;
 
-import com.dom.sprout.config.JwtService;
 import com.dom.sprout.entity.Plant;
 import com.dom.sprout.service.PlantService;
-import com.dom.sprout.service.PlantTagsSevice;
+import com.dom.sprout.service.PlantTagsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import static java.nio.file.Paths.get;
@@ -21,12 +15,12 @@ import static java.nio.file.Paths.get;
 @RequestMapping("/api/plants")
 public class PlantController {
     private PlantService plantService;
-    private PlantTagsSevice plantTagsSevice;
+    private PlantTagsService plantTagsService;
 
     @Autowired
-    public PlantController(PlantService plantService, PlantTagsSevice plantTagsSevice) {
+    public PlantController(PlantService plantService, PlantTagsService plantTagsService) {
         this.plantService = plantService;
-        this.plantTagsSevice = plantTagsSevice;
+        this.plantTagsService = plantTagsService;
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -61,8 +55,8 @@ public class PlantController {
     }
 
     @PostMapping("/tag")
-    public ResponseEntity<Plant> addTagToPlant(@RequestBody AddTagToPlantRequest request){
-        return ResponseEntity.ok(plantTagsSevice.addTagToPlant(request));
+    public ResponseEntity<Plant> addTagToPlant(@RequestBody AddTagToItemRequest request){
+        return ResponseEntity.ok(plantTagsService.addTagToPlant(request));
     }
 
 }

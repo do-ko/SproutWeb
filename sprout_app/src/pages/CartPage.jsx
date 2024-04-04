@@ -49,8 +49,7 @@ export const CartPage = () => {
                 setTotalPrice(tempTotal)
             } else {
                 setTotalPrice(0)
-            }
-
+            }to
         }
     }, [cookies.token, totalPrice])
 

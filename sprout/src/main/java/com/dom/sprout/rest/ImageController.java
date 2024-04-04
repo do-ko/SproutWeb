@@ -21,7 +21,6 @@ public class ImageController {
     public ResponseEntity<?> getImage(@PathVariable String fileName) throws Exception {
         String pathToImg = "sprout\\src\\main\\resources\\static\\" + fileName;
         byte[] image = Files.readAllBytes(new File(pathToImg).toPath());
-        System.out.println("Passed");
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("image/jpeg"))
                 .body(image);

@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface PlantService {
     List<Plant> findAll();
     Plant findById(int id);
-    Plant save(Plant diary);
+    Plant save(Plant plant);
     void deleteById(int id);
 }

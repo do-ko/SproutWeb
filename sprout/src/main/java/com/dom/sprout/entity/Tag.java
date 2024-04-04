@@ -28,6 +28,10 @@ public class Tag {
     @OneToMany(mappedBy = "tag")
     private List<PlantTags> plants;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "tag")
+    private List<GroundTags> grounds;
+
     public Tag(String tagName) {
         this.tagName = tagName;
     }

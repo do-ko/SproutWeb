@@ -46,10 +46,4 @@ public class CartController {
         cartService.clearCart(email);
         return ResponseEntity.noContent().build();
     }
-
-//    @GetMapping("/test")
-//    public void test(@RequestHeader("Authorization") String token){
-//        String email = jwtService.extractUsername(token.substring(7));
-//        System.out.println(email);
-//    }
 }

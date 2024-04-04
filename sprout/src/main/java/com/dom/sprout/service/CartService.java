@@ -1,8 +1,6 @@
 package com.dom.sprout.service;
 
-import com.dom.sprout.dao.CartPlantsRepository;
-import com.dom.sprout.dao.PlantRepository;
-import com.dom.sprout.dao.UserRepository;
+import com.dom.sprout.dao.*;
 import com.dom.sprout.entity.*;
 import com.dom.sprout.rest.CartItemRequest;
 import com.dom.sprout.rest.CartResponse;
@@ -18,21 +16,33 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CartService {
     private final CartPlantsRepository cartPlantsRepository;
+    private final CartGroundsRepository cartGroundsRepository;
     private final UserRepository userRepository;
     private final PlantRepository plantRepository;
+    private final GroundRepository groundRepository;
+
 
     public CartResponse getCart(String email) {
         User user = userRepository.findByEmail(email).orElseThrow();
         List<CartPlants> cartPlants = cartPlantsRepository.findByUser(user);
+        List<CartGrounds> cartGrounds = cartGroundsRepository.findByUser(user);
         List<CartItemPlant> plants = new ArrayList<>();
+        List<CartItemGround> grounds = new ArrayList<>();
+
         int total = 0;
         for (CartPlants plant : cartPlants) {
             plants.add(new CartItemPlant(plant.getUser().getId(), plant.getItem(), plant.getCount()));
             total += plant.getCount();
         }
 
+        for (CartGrounds ground : cartGrounds) {
+            grounds.add(new CartItemGround(ground.getUser().getId(), ground.getItem(), ground.getCount()));
+            total += ground.getCount();
+        }
+
         return CartResponse.builder()
                 .plants(plants)
+                .grounds(grounds)
                 .total(total)
                 .build();
     }
@@ -52,17 +62,40 @@ public class CartService {
                         cartPlantsRepository.save(newItem);
                     }
             );
+        } else if (request.getType().name().equals("GROUND")) {
+            Ground ground = groundRepository.findById(request.getId()).orElseThrow();
+            Optional<CartGrounds> cartGround = cartGroundsRepository.findById(new CartItemId(user.getId(), ground.getId()));
+            cartGround.ifPresentOrElse(
+                    value -> {
+                        value.setCount(value.getCount() + 1);
+                        cartGroundsRepository.save(value);
+                    },
+                    () -> {
+                        CartGrounds newItem = new CartGrounds(user, ground, 1);
+                        cartGroundsRepository.save(newItem);
+                    }
+            );
         }
 
         List<CartPlants> cartPlants = cartPlantsRepository.findByUser(user);
+        List<CartGrounds> cartGrounds = cartGroundsRepository.findByUser(user);
         List<CartItemPlant> plants = new ArrayList<>();
+        List<CartItemGround> grounds = new ArrayList<>();
+
         int total = 0;
-        for (CartPlants plantItem : cartPlants) {
-            plants.add(new CartItemPlant(plantItem.getUser().getId(), plantItem.getItem(), plantItem.getCount()));
-            total += plantItem.getCount();
+        for (CartPlants plant : cartPlants) {
+            plants.add(new CartItemPlant(plant.getUser().getId(), plant.getItem(), plant.getCount()));
+            total += plant.getCount();
         }
+
+        for (CartGrounds ground : cartGrounds) {
+            grounds.add(new CartItemGround(ground.getUser().getId(), ground.getItem(), ground.getCount()));
+            total += ground.getCount();
+        }
+
         return CartResponse.builder()
                 .plants(plants)
+                .grounds(grounds)
                 .total(total)
                 .build();
     }
@@ -74,7 +107,7 @@ public class CartService {
             Optional<CartPlants> cartPlant = cartPlantsRepository.findById(new CartItemId(user.getId(), plant.getId()));
             cartPlant.ifPresentOrElse(
                     value -> {
-                        if (value.getCount() == 1){
+                        if (value.getCount() == 1) {
                             cartPlantsRepository.delete(value);
                         } else {
                             value.setCount(value.getCount() - 1);
@@ -84,17 +117,42 @@ public class CartService {
                     () -> {
                     }
             );
+        } else if (request.getType().name().equals("GROUND")) {
+            Ground ground = groundRepository.findById(request.getId()).orElseThrow();
+            Optional<CartGrounds> cartGround = cartGroundsRepository.findById(new CartItemId(user.getId(), ground.getId()));
+            cartGround.ifPresentOrElse(
+                    value -> {
+                        if (value.getCount() == 1) {
+                            cartGroundsRepository.delete(value);
+                        } else {
+                            value.setCount(value.getCount() - 1);
+                            cartGroundsRepository.save(value);
+                        }
+                    },
+                    () -> {
+                    }
+            );
         }
 
         List<CartPlants> cartPlants = cartPlantsRepository.findByUser(user);
+        List<CartGrounds> cartGrounds = cartGroundsRepository.findByUser(user);
         List<CartItemPlant> plants = new ArrayList<>();
+        List<CartItemGround> grounds = new ArrayList<>();
+
         int total = 0;
-        for (CartPlants plantItem : cartPlants) {
-            plants.add(new CartItemPlant(plantItem.getUser().getId(), plantItem.getItem(), plantItem.getCount()));
-            total += plantItem.getCount();
+        for (CartPlants plant : cartPlants) {
+            plants.add(new CartItemPlant(plant.getUser().getId(), plant.getItem(), plant.getCount()));
+            total += plant.getCount();
         }
+
+        for (CartGrounds ground : cartGrounds) {
+            grounds.add(new CartItemGround(ground.getUser().getId(), ground.getItem(), ground.getCount()));
+            total += ground.getCount();
+        }
+
         return CartResponse.builder()
                 .plants(plants)
+                .grounds(grounds)
                 .total(total)
                 .build();
     }
@@ -103,5 +161,6 @@ public class CartService {
     public void clearCart(String email) {
         User user = userRepository.findByEmail(email).orElseThrow();
         cartPlantsRepository.deleteCartPlantsByUser(user);
+        cartGroundsRepository.deleteCartGroundsByUser(user);
     }
 }

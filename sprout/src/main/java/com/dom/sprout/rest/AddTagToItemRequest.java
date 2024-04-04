@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddTagToPlantRequest {
+public class AddTagToItemRequest {
     private Integer tag_id;
-    private Integer plant_id;
+    private Integer item_id;
 }
