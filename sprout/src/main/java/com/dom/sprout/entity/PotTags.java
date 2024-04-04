@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "ground_tag")
+@Table(name = "pot_tag")
 @IdClass(TagId.class)
-public class GroundTags {
+public class PotTags {
 
     @Id
     @ManyToOne
@@ -15,16 +15,16 @@ public class GroundTags {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "ground_id", referencedColumnName = "id")
+    @JoinColumn(name = "pot_id", referencedColumnName = "id")
     @JsonBackReference
-    private Ground item;
+    private Pot item;
 
-    public GroundTags(Tag tag, Ground ground) {
+    public PotTags(Tag tag, Pot pot) {
         this.tag = tag;
-        this.item = ground;
+        this.item = pot;
     }
 
-    public GroundTags() {
+    public PotTags() {
 
     }
 
@@ -36,19 +36,19 @@ public class GroundTags {
         this.tag = tag;
     }
 
-    public Ground getItem() {
+    public Pot getItem() {
         return item;
     }
 
-    public void setItem(Ground ground) {
-        this.item = ground;
+    public void setItem(Pot pot) {
+        this.item = pot;
     }
 
     @Override
     public String toString() {
-        return "GroundTags{" +
+        return "PotTags{" +
                 "tag=" + tag +
-                ", ground=" + item +
+                ", pot=" + item +
                 '}';
     }
 }

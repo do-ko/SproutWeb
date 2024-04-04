@@ -2,7 +2,6 @@ package com.dom.sprout.dao;
 
 import com.dom.sprout.entity.CartGrounds;
 import com.dom.sprout.entity.CartItemId;
-import com.dom.sprout.entity.CartPlants;
 import com.dom.sprout.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 

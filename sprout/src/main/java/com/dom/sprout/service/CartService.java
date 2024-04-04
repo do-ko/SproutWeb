@@ -17,17 +17,21 @@ import java.util.Optional;
 public class CartService {
     private final CartPlantsRepository cartPlantsRepository;
     private final CartGroundsRepository cartGroundsRepository;
+    private final CartPotsRepository cartPotsRepository;
     private final UserRepository userRepository;
     private final PlantRepository plantRepository;
     private final GroundRepository groundRepository;
-
+    private final PotRepository potRepository;
 
     public CartResponse getCart(String email) {
         User user = userRepository.findByEmail(email).orElseThrow();
         List<CartPlants> cartPlants = cartPlantsRepository.findByUser(user);
         List<CartGrounds> cartGrounds = cartGroundsRepository.findByUser(user);
+        List<CartPots> cartPots = cartPotsRepository.findByUser(user);
+
         List<CartItemPlant> plants = new ArrayList<>();
         List<CartItemGround> grounds = new ArrayList<>();
+        List<CartItemPot> pots = new ArrayList<>();
 
         int total = 0;
         for (CartPlants plant : cartPlants) {
@@ -40,9 +44,15 @@ public class CartService {
             total += ground.getCount();
         }
 
+        for (CartPots pot : cartPots) {
+            pots.add(new CartItemPot(pot.getUser().getId(), pot.getItem(), pot.getCount()));
+            total += pot.getCount();
+        }
+
         return CartResponse.builder()
                 .plants(plants)
                 .grounds(grounds)
+                .pots(pots)
                 .total(total)
                 .build();
     }
@@ -75,12 +85,28 @@ public class CartService {
                         cartGroundsRepository.save(newItem);
                     }
             );
+        } else if (request.getType().name().equals("POT")) {
+            Pot pot = potRepository.findById(request.getId()).orElseThrow();
+            Optional<CartPots> cartPot = cartPotsRepository.findById(new CartItemId(user.getId(), pot.getId()));
+            cartPot.ifPresentOrElse(
+                    value -> {
+                        value.setCount(value.getCount() + 1);
+                        cartPotsRepository.save(value);
+                    },
+                    () -> {
+                        CartPots newItem = new CartPots(user, pot, 1);
+                        cartPotsRepository.save(newItem);
+                    }
+            );
         }
 
         List<CartPlants> cartPlants = cartPlantsRepository.findByUser(user);
         List<CartGrounds> cartGrounds = cartGroundsRepository.findByUser(user);
+        List<CartPots> cartPots = cartPotsRepository.findByUser(user);
         List<CartItemPlant> plants = new ArrayList<>();
         List<CartItemGround> grounds = new ArrayList<>();
+        List<CartItemPot> pots = new ArrayList<>();
+
 
         int total = 0;
         for (CartPlants plant : cartPlants) {
@@ -93,9 +119,15 @@ public class CartService {
             total += ground.getCount();
         }
 
+        for (CartPots pot : cartPots) {
+            pots.add(new CartItemPot(pot.getUser().getId(), pot.getItem(), pot.getCount()));
+            total += pot.getCount();
+        }
+
         return CartResponse.builder()
                 .plants(plants)
                 .grounds(grounds)
+                .pots(pots)
                 .total(total)
                 .build();
     }
@@ -132,12 +164,30 @@ public class CartService {
                     () -> {
                     }
             );
+        } else if (request.getType().name().equals("POT")) {
+            Pot pot = potRepository.findById(request.getId()).orElseThrow();
+            Optional<CartPots> cartPot = cartPotsRepository.findById(new CartItemId(user.getId(), pot.getId()));
+            cartPot.ifPresentOrElse(
+                    value -> {
+                        if (value.getCount() == 1) {
+                            cartPotsRepository.delete(value);
+                        } else {
+                            value.setCount(value.getCount() - 1);
+                            cartPotsRepository.save(value);
+                        }
+                    },
+                    () -> {
+                    }
+            );
         }
 
         List<CartPlants> cartPlants = cartPlantsRepository.findByUser(user);
         List<CartGrounds> cartGrounds = cartGroundsRepository.findByUser(user);
+        List<CartPots> cartPots = cartPotsRepository.findByUser(user);
         List<CartItemPlant> plants = new ArrayList<>();
         List<CartItemGround> grounds = new ArrayList<>();
+        List<CartItemPot> pots = new ArrayList<>();
+
 
         int total = 0;
         for (CartPlants plant : cartPlants) {
@@ -150,9 +200,15 @@ public class CartService {
             total += ground.getCount();
         }
 
+        for (CartPots pot : cartPots) {
+            pots.add(new CartItemPot(pot.getUser().getId(), pot.getItem(), pot.getCount()));
+            total += pot.getCount();
+        }
+
         return CartResponse.builder()
                 .plants(plants)
                 .grounds(grounds)
+                .pots(pots)
                 .total(total)
                 .build();
     }
@@ -162,5 +218,6 @@ public class CartService {
         User user = userRepository.findByEmail(email).orElseThrow();
         cartPlantsRepository.deleteCartPlantsByUser(user);
         cartGroundsRepository.deleteCartGroundsByUser(user);
+        cartPotsRepository.deleteCartPotsByUser(user);
     }
 }

@@ -1,13 +1,13 @@
 package com.dom.sprout.entity;
 
-public class CartItemGround {
+public class CartItemPot {
     private int user_id;
-    private Ground ground;
+    private Pot pot;
     private int count;
 
-    public CartItemGround(int user_id, Ground ground, int count) {
+    public CartItemPot(int user_id, Pot pot, int count) {
         this.user_id = user_id;
-        this.ground = ground;
+        this.pot = pot;
         this.count = count;
     }
 
@@ -19,12 +19,12 @@ public class CartItemGround {
         this.user_id = user_id;
     }
 
-    public Ground getGround() {
-        return ground;
+    public Pot getPot() {
+        return pot;
     }
 
-    public void setGround(Ground ground) {
-        this.ground = ground;
+    public void setPot(Pot pot) {
+        this.pot = pot;
     }
 
     public int getCount() {
@@ -37,9 +37,9 @@ public class CartItemGround {
 
     @Override
     public String toString() {
-        return "CartItemGround{" +
+        return "CartItemPot{" +
                 "user_id=" + user_id +
-                ", ground=" + ground +
+                ", pot=" + pot +
                 ", count=" + count +
                 '}';
     }
