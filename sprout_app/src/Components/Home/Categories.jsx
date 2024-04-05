@@ -11,7 +11,7 @@ export const Categories = () => {
                         <a href={"/plants"} className={"imageCategory imagePlants textCategory"}>
                             Plants
                         </a>
-                        <a href={"/"} className={"imageCategory imageGround textCategory"}>
+                        <a href={"/grounds"} className={"imageCategory imageGround textCategory"}>
                             Ground
                         </a>
                     </Stack>

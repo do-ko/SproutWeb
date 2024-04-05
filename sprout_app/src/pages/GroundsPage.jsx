@@ -1,25 +1,25 @@
 import {Navigation} from "../Components/Home/Navigation";
-import {Col, Form, Row, Stack} from "react-bootstrap";
 import React, {useContext, useEffect, useState} from "react";
-import ProductContext from "../context/ProductProvider";
+import {Col, Form, Row, Stack} from "react-bootstrap";
 import {SearchBar} from "../Components/Products/SearchBar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faFilter} from "@fortawesome/free-solid-svg-icons";
 import {Product} from "../Components/Products/Product";
+import ProductContext from "../context/ProductProvider";
 
-export const PlantsPage = () => {
-    const {getPlants} = useContext(ProductContext);
+export const GroundsPage = () => {
+    const {getGrounds} = useContext(ProductContext);
     const [searchResults, setSearchResults] = useState([])
-    const [plants, setPlants] = useState([])
+    const [grounds, setGrounds] = useState([])
     const [filter, setFilter] = useState(false)
-    const [wetFilter, setWetFilter] = useState(false)
-    const [petFilter, setPetFilter] = useState(false)
-    const [sunFilter, setSunFilter] = useState(false)
-    const [dryFilter, setDryFilter] = useState(false)
+    const [acidicFilter, setAcidicFilter] = useState(false)
+    const [alkalineFilter, setAlkalineFilter] = useState(false)
+    const [crumblyFilter, setCrumblyFilter] = useState(false)
+    const [looseFilter, setLooseFilter] = useState(false)
 
     useEffect(() => {
-        getPlants().then(json => {
-            setPlants(json)
+        getGrounds().then(json => {
+            setGrounds(json)
             return json
         }).then(json => {
             setSearchResults(json)
@@ -28,26 +28,23 @@ export const PlantsPage = () => {
 
     useEffect(() => {
         let filterList = []
-        if (wetFilter) filterList.push('wet')
-        if (petFilter) filterList.push('pet')
-        if (sunFilter) filterList.push('sun')
-        if (dryFilter) filterList.push('dry')
+        if (acidicFilter) filterList.push('acidic')
+        if (alkalineFilter) filterList.push('alkaline')
+        if (crumblyFilter) filterList.push('crumbly')
+        if (looseFilter) filterList.push('loose')
 
 
         if (filterList.length !== 0){
-            console.log(filterList)
-            // setSearchResults(plants)
-            const results = plants.filter((product) => {
+            const results = grounds.filter((product) => {
                 const tagNames = product.tags.map((tag) => tag.tag.tagName)
                 if (filterList.every(t => tagNames.includes(t))){
                     return product
                 }
             })
-            // console.log(results)
             setSearchResults(results)
-        } else setSearchResults(plants)
+        } else setSearchResults(grounds)
 
-    }, [wetFilter, petFilter, dryFilter, sunFilter])
+    }, [acidicFilter, alkalineFilter, crumblyFilter, looseFilter])
 
     const handleFilter = () => {
         setFilter(!filter)
@@ -63,82 +60,81 @@ export const PlantsPage = () => {
                         <div key={`checkbox`} className="mb-3">
                             <Form.Check
                                 inline
-                                label="DRY"
+                                label="ACIDIC"
                                 name="group1"
                                 type={"checkbox"}
                                 id={`inline-checkbox-1`}
-                                onChange={() => setDryFilter(!dryFilter)}
+                                onChange={() => setAcidicFilter(!acidicFilter)}
                             />
                             <Form.Check
                                 inline
-                                label="SUN"
+                                label="ALCALINE"
                                 name="group1"
                                 type={"checkbox"}
                                 id={`inline-checkbox-2`}
-                                onChange={() => setSunFilter(!sunFilter)}
+                                onChange={() => setAlkalineFilter(!alkalineFilter)}
                             />
                             <Form.Check
                                 inline
-                                label="WET"
+                                label="CRUMBLY"
                                 name="group1"
                                 type={"checkbox"}
                                 id={`inline-checkbox-3`}
-                                onChange={() => setWetFilter(!wetFilter)}
+                                onChange={() => setCrumblyFilter(!crumblyFilter)}
                             />
                             <Form.Check
                                 inline
-                                label="PET"
+                                label="LOOSE"
                                 name="group1"
                                 type={"checkbox"}
                                 id={`inline-checkbox-4`}
-                                onChange={() => setPetFilter(!petFilter)}
+                                onChange={() => setLooseFilter(!looseFilter)}
                             />
                         </div>
                     </Form>
                 </div>
                 <Stack>
                     <div className={"searchFilterContainer"}>
-                        <SearchBar products={plants} setSearchResult={setSearchResults}/>
-                        {/*<Button variant="custom">Primary</Button>*/}
+                        <SearchBar products={grounds} setSearchResult={setSearchResults}/>
                         <FontAwesomeIcon onClick={handleFilter} icon={faFilter} className={"filterButton"} size={"lg"}/>
                         {filter ? <div className={"filterMenuSmall"}>
                             <Form>
                                 <div key={`checkbox`}>
                                     <Form.Check
                                         inline
-                                        label="DRY"
+                                        label="ACIDIC"
                                         name="group1"
                                         type={"checkbox"}
                                         id={`inline-checkbox-1`}
-                                        checked={dryFilter}
-                                        onChange={() => setDryFilter(!dryFilter)}
+                                        checked={acidicFilter}
+                                        onChange={() => setAcidicFilter(!acidicFilter)}
                                     />
                                     <Form.Check
                                         inline
-                                        label="SUN"
+                                        label="ALKALINE"
                                         name="group1"
                                         type={"checkbox"}
                                         id={`inline-checkbox-2`}
-                                        checked={sunFilter}
-                                        onChange={() => setSunFilter(!sunFilter)}
+                                        checked={alkalineFilter}
+                                        onChange={() => setAlkalineFilter(!alkalineFilter)}
                                     />
                                     <Form.Check
                                         inline
-                                        label="WET"
+                                        label="CRUMBLY"
                                         name="group1"
                                         type={"checkbox"}
                                         id={`inline-checkbox-3`}
-                                        checked={wetFilter}
-                                        onChange={() => setWetFilter(!wetFilter)}
+                                        checked={crumblyFilter}
+                                        onChange={() => setCrumblyFilter(!crumblyFilter)}
                                     />
                                     <Form.Check
                                         inline
-                                        label="PET"
+                                        label="LOOSE"
                                         name="group1"
                                         type={"checkbox"}
                                         id={`inline-checkbox-4`}
-                                        checked={petFilter}
-                                        onChange={() => setPetFilter(!petFilter)}
+                                        checked={looseFilter}
+                                        onChange={() => setLooseFilter(!looseFilter)}
                                     />
                                 </div>
                             </Form>
@@ -149,7 +145,7 @@ export const PlantsPage = () => {
                         <Row style={{width: "auto", margin: 16}}>
                             {searchResults.map((plant, index) => {
                                 return <Col className="productColumn col-12 col-sm-6 col-lg-4 col-xl-3">
-                                    <Product product={plant} type={"PLANT"}/>
+                                    <Product product={plant} type={"GROUND"}/>
                                 </Col>
                             })}
                         </Row>

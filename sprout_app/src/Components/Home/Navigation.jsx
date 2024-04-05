@@ -30,6 +30,11 @@ export const Navigation = ({sticky, fixed}) => {
         }
     }, [JSON.parse(localStorage.getItem('cart'))])
 
+
+    useEffect(() => {
+        setTotal(cart.total)
+    }, [cart])
+
     return (
         <Navbar id={"navigation-custom"} sticky={sticky} fixed={fixed} expand={"lg"}>
             <Container fluid={"md"}>
@@ -41,7 +46,7 @@ export const Navigation = ({sticky, fixed}) => {
                     <Nav>
                         <Container className={"store-links-container"}>
                             <Nav.Link href={"/plants"}>plants</Nav.Link>
-                            <Nav.Link>ground</Nav.Link>
+                            <Nav.Link href={"/grounds"}>ground</Nav.Link>
                             <Nav.Link>pots</Nav.Link>
                         </Container>
 

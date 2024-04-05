@@ -17,8 +17,6 @@ MyVerticallyCenteredModal.propTypes = {
 };
 export const CheckoutPage = () => {
     const [validated, setValidated] = useState(false);
-    const errRef = useRef();
-    const [errorMsg, setErrorMsg] = useState("")
     const [email, setEmail] = useState("");
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -168,9 +166,13 @@ export const CheckoutPage = () => {
             getCart().then(r => {
                 const cart = r.data
                 setCurrentCart(cart)
+                setCart(cart)
                 let tempTotal = 0
                 cart.plants.forEach((item) => {
                     tempTotal += item.count * item.plant.price
+                })
+                cart.grounds.forEach((item) => {
+                    tempTotal += item.count * item.ground.price
                 })
                 setTotalPrice(tempTotal)
                 console.log(tempTotal)
@@ -184,11 +186,13 @@ export const CheckoutPage = () => {
                 cart.plants.forEach((item) => {
                     tempTotal += item.count * item.plant.price
                 })
+                cart.grounds.forEach((item) => {
+                    tempTotal += item.count * item.ground.price
+                })
                 setTotalPrice(tempTotal)
             } else {
                 setTotalPrice(0)
             }
-
         }
     }, [cookies.token, totalPrice])
 
@@ -390,7 +394,10 @@ export const CheckoutPage = () => {
                                 <h3>Cart</h3>
                                 <Stack className={"cartItems"}>
                                     {currentCart.plants?.map(item => {
-                                        return <CheckoutItem product={item}/>
+                                        return <CheckoutItem product={item} type={"PLANT"}/>
+                                    })}
+                                    {currentCart.grounds?.map(item => {
+                                        return <CheckoutItem product={item} type={"GROUND"}/>
                                     })}
                                 </Stack>
                             </div>

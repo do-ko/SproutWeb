@@ -7,9 +7,9 @@ import {useContext, useEffect} from "react";
 import AuthContext from "./context/AuthProvider";
 import {RegisterPage} from "./pages/RegisterPage";
 import {PlantsPage} from "./pages/PlantsPage";
-import {useCookies} from "react-cookie";
 import {CartPage} from "./pages/CartPage";
 import {CheckoutPage} from "./pages/CheckoutPage";
+import {GroundsPage} from "./pages/GroundsPage";
 
 
 function App() {
@@ -35,6 +35,10 @@ function App() {
         {
             path: "/plants",
             element: <PlantsPage/>
+        },
+        {
+            path: "/grounds",
+            element: <GroundsPage/>
         },
         {
             path: "/cart",

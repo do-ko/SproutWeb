@@ -4,14 +4,13 @@ import {useContext, useEffect, useState} from "react";
 import {useCookies} from "react-cookie";
 import axios from "../api/axios";
 import {CartItem} from "../Components/cart/CartItem";
-import PlantContext from "../context/PlantProvider";
-import {AuthProvider} from "../context/AuthProvider";
+import AuthContext from "../context/AuthProvider";
 
 export const CartPage = () => {
     const [cookies] = useCookies(['token', 'cart']);
     const [totalPrice, setTotalPrice] = useState(0);
     const [currentCart, setCurrentCart] = useState({})
-    // const {currentCart, setCurrentCart} = useContext(AuthProvider);
+    const {setCart} = useContext(AuthContext);
 
 
     const getCart = async () => {
@@ -30,9 +29,13 @@ export const CartPage = () => {
             getCart().then(r => {
                 const cart = r.data
                 setCurrentCart(cart)
+                setCart(cart)
                 let tempTotal = 0
                 cart.plants.forEach((item) => {
                     tempTotal += item.count * item.plant.price
+                })
+                cart.grounds.forEach((item) => {
+                    tempTotal += item.count * item.ground.price
                 })
                 setTotalPrice(tempTotal)
                 console.log(tempTotal)
@@ -40,16 +43,19 @@ export const CartPage = () => {
         } else {
             console.log("Use local cart")
             const cart = JSON.parse(localStorage.getItem('cart'))
-            if (cart){
+            if (cart) {
                 setCurrentCart(cart)
                 let tempTotal = 0
                 cart.plants.forEach((item) => {
                     tempTotal += item.count * item.plant.price
                 })
+                cart.grounds.forEach((item) => {
+                    tempTotal += item.count * item.ground.price
+                })
                 setTotalPrice(tempTotal)
             } else {
                 setTotalPrice(0)
-            }to
+            }
         }
     }, [cookies.token, totalPrice])
 
@@ -67,7 +73,12 @@ export const CartPage = () => {
                 <div className={"cartDataContainer"}>
                     <Stack className={"cartItems"}>
                         {currentCart.plants?.map(item => {
-                            return <CartItem product={item} setCurrentCart={setCurrentCart} setTotalPrice={setTotalPrice}/>
+                            return <CartItem product={item} setCurrentCart={setCurrentCart}
+                                             setTotalPrice={setTotalPrice} type={"PLANT"}/>
+                        })}
+                        {currentCart.grounds?.map(item => {
+                            return <CartItem product={item} setCurrentCart={setCurrentCart}
+                                             setTotalPrice={setTotalPrice} type={"GROUND"}/>
                         })}
                     </Stack>
                     <div className={"summaryContainer"}>
