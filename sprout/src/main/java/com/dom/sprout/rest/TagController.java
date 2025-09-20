@@ -1,48 +1,53 @@
 package com.dom.sprout.rest;
 
-import com.dom.sprout.entity.Plant;
 import com.dom.sprout.entity.Tag;
-import com.dom.sprout.service.PlantService;
 import com.dom.sprout.service.TagService;
-import com.dom.sprout.service.TagServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/tags")
+@io.swagger.v3.oas.annotations.tags.Tag(name = "Tags")
 public class TagController {
     private final TagService tagService;
 
-    @Autowired
-    public TagController(TagService tagService) {
-        this.tagService = tagService;
-    }
-
+    @Operation(summary = "Get all tags",
+            description = "Returns a list with all tags.")
     @GetMapping("")
-    public List<Tag> findAll(){
+    public List<Tag> findAll() {
         return tagService.findAll();
     }
 
+    @Operation(summary = "Get a tag by id",
+            description = "Returns a tag by id.")
     @GetMapping("/{id}")
-    public Tag findById(@PathVariable int id){
+    public Tag findById(@PathVariable int id) {
         return tagService.findById(id);
     }
 
+    @Operation(summary = "Create new tag",
+            description = "Creates a new tag.")
     @PostMapping("")
     public Tag addTag(@RequestBody Tag tag) {
         tag.setId(0);
         return tagService.save(tag);
     }
 
+    @Operation(summary = "Edits a tag",
+            description = "Updates tag information.")
     @PutMapping("")
-    public Tag updateTag(@RequestBody Tag tag){
+    public Tag updateTag(@RequestBody Tag tag) {
         return tagService.save(tag);
     }
 
+    @Operation(summary = "Delete a tag",
+            description = "Deletes a tag by id.")
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable int id){
+    public void deleteById(@PathVariable int id) {
         tagService.deleteById(id);
     }
 

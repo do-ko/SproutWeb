@@ -1,5 +1,7 @@
 package com.dom.sprout.rest;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +16,11 @@ import static java.nio.file.Paths.get;
 
 @RestController
 @RequestMapping("/api/images")
+@Tag(name = "Images")
 public class ImageController {
 
+    @Operation(summary = "Get image",
+            description = "Returns and image according to given filename.")
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/download/{fileName}")
     public ResponseEntity<?> getImage(@PathVariable String fileName) throws Exception {
@@ -26,6 +31,8 @@ public class ImageController {
                 .body(image);
     }
 
+    @Operation(summary = "Upload image",
+            description = "Uploads a new image.")
     @PostMapping("/upload/{fileName}")
     public String uploadImage(@RequestParam("file") MultipartFile file, @PathVariable String fileName) throws Exception {
         String[] fileData = file.getOriginalFilename().split("\\.");

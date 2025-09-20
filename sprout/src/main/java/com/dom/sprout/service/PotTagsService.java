@@ -2,7 +2,7 @@ package com.dom.sprout.service;
 
 import com.dom.sprout.dao.*;
 import com.dom.sprout.entity.*;
-import com.dom.sprout.rest.AddTagToItemRequest;
+import com.dom.sprout.dto.AddTagToItemRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

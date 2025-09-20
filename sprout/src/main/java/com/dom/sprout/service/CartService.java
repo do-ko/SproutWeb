@@ -2,8 +2,8 @@ package com.dom.sprout.service;
 
 import com.dom.sprout.dao.*;
 import com.dom.sprout.entity.*;
-import com.dom.sprout.rest.CartItemRequest;
-import com.dom.sprout.rest.CartResponse;
+import com.dom.sprout.dto.CartItemRequest;
+import com.dom.sprout.dto.CartResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

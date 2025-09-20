@@ -1,5 +1,8 @@
 package com.dom.sprout.auth;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -7,22 +10,29 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@Tag(name = "Authentication")
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
+
+    @Operation(summary = "Register a new user",
+            description = "Creates a new user account with firstname, lastname, email, password.")
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RegisterRequest request
-    ){
+            @Valid @RequestBody final RegisterRequest request
+    ) {
         return ResponseEntity.ok(authenticationService.register(request));
     }
 
+    @Operation(summary = "Login to the app",
+            description = "Authenticates a user with a valid email and password. " +
+                    "Returns a JWT access token and basic user information upon successful login.")
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody AuthenticationRequest request
-    ){
+            @Valid @RequestBody AuthenticationRequest request
+    ) {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 }

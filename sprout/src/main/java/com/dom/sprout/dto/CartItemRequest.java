@@ -1,5 +1,6 @@
-package com.dom.sprout.rest;
+package com.dom.sprout.dto;
 
+import com.dom.sprout.entity.ItemType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

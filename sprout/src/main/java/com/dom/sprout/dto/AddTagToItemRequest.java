@@ -1,4 +1,4 @@
-package com.dom.sprout.rest;
+package com.dom.sprout.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
