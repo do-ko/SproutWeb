@@ -1,22 +1,22 @@
-package com.dom.sprout.dto;
-
-import com.dom.sprout.entity.CartItemGround;
-import com.dom.sprout.entity.CartItemPlant;
-import com.dom.sprout.entity.CartItemPot;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.List;
-
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class CartResponse {
-    private int total;
-    private List<CartItemPlant> plants;
-    private List<CartItemGround> grounds;
-    private List<CartItemPot> pots;
-}
+//package com.dom.sprout.dto;
+//
+//import com.dom.sprout.entity.CartItemGround;
+//import com.dom.sprout.entity.CartItemPlant;
+//import com.dom.sprout.entity.CartItemPot;
+//import lombok.AllArgsConstructor;
+//import lombok.Builder;
+//import lombok.Data;
+//import lombok.NoArgsConstructor;
+//
+//import java.util.List;
+//
+//@Data
+//@Builder
+//@AllArgsConstructor
+//@NoArgsConstructor
+//public class CartResponse {
+//    private int total;
+//    private List<CartItemPlant> plants;
+//    private List<CartItemGround> grounds;
+//    private List<CartItemPot> pots;
+//}

@@ -42,9 +42,9 @@ public class User implements UserDetails {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private List<CartPlants> plants;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "user")
+//    private List<CartPlants> plants;
 
     @Override
     public String getPassword() {

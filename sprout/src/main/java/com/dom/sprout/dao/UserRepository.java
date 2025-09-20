@@ -1,6 +1,5 @@
 package com.dom.sprout.dao;
 
-import com.dom.sprout.entity.Plant;
 import com.dom.sprout.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 

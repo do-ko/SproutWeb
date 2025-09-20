@@ -7,10 +7,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,16 +22,11 @@ public class Tag {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "tagName")
     private String tagName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "tag")
-    private List<PlantTags> plants;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "tag")
-    private List<GroundTags> grounds;
+    @ManyToMany(mappedBy = "tags")
+    private Set<Item> items = new HashSet<>();
 
     public Tag(String tagName) {
         this.tagName = tagName;
