@@ -6,7 +6,7 @@ import com.dom.sprout.dao.TagRepository;
 import com.dom.sprout.entity.Ground;
 import com.dom.sprout.entity.GroundTags;
 import com.dom.sprout.entity.Tag;
-import com.dom.sprout.rest.AddTagToItemRequest;
+import com.dom.sprout.dto.AddTagToItemRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

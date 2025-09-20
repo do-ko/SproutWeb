@@ -1,4 +1,4 @@
-package com.dom.sprout.rest;
+package com.dom.sprout.dto;
 
 import com.dom.sprout.entity.CartItemGround;
 import com.dom.sprout.entity.CartItemPlant;
