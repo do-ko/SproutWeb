@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddTagToItemRequest {
-    private Integer tag_id;
-    private Integer item_id;
+    private Long tagId;
+    private Long itemId;
 }

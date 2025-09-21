@@ -1,8 +1,6 @@
 package com.dom.sprout.dto;
 
-import com.dom.sprout.entity.CartItemGround;
-import com.dom.sprout.entity.CartItemPlant;
-import com.dom.sprout.entity.CartItemPot;
+import com.dom.sprout.entity.CartItem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +14,5 @@ import java.util.List;
 @NoArgsConstructor
 public class CartResponse {
     private int total;
-    private List<CartItemPlant> plants;
-    private List<CartItemGround> grounds;
-    private List<CartItemPot> pots;
+    private List<CartItem> items;
 }

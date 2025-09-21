@@ -24,7 +24,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
     private String firstname;
 
@@ -41,10 +41,6 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
     }
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private List<CartPlants> plants;
 
     @Override
     public String getPassword() {
