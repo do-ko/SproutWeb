@@ -20,8 +20,9 @@ public class Tag {
 
     @Id
     @GeneratedValue
-    private Integer id;
+    private Long id;
 
+    @Column(unique = true)
     private String tagName;
 
     @JsonIgnore

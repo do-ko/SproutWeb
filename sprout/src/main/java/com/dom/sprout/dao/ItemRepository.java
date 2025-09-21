@@ -1,9 +1,9 @@
 package com.dom.sprout.dao;
 
-import com.dom.sprout.entity.Tag;
+import com.dom.sprout.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TagRepository extends JpaRepository<Tag, Long> {
+public interface ItemRepository extends JpaRepository<Item, Long> {
 }

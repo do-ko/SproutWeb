@@ -12,6 +12,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Data
 public class CartItemId implements Serializable {
-    private int userId;
-    private int itemId;
+    private Long userId;
+    private Long itemId;
 }
