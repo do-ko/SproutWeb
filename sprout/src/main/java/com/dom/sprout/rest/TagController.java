@@ -21,7 +21,7 @@ public class TagController {
 
     @Operation(summary = "Get all tags",
             description = "Returns a list with all tags.")
-    @GetMapping("")
+    @GetMapping()
     public List<Tag> findAll() {
         return tagService.findAll();
     }
@@ -35,14 +35,14 @@ public class TagController {
 
     @Operation(summary = "Create new tag",
             description = "Creates a new tag.")
-    @PostMapping("")
+    @PostMapping()
     public Tag addTag(@Valid @RequestBody CreateTagRequest request) {
         return tagService.createNewTag(request);
     }
 
     @Operation(summary = "Edits a tag",
             description = "Updates tag information.")
-    @PutMapping("")
+    @PutMapping()
     public Tag updateTag(@Valid @RequestBody EditTagRequest request) {
         return tagService.editTag(request);
     }

@@ -17,7 +17,6 @@ public class AuthenticationController {
 
     @Operation(summary = "Register a new user",
             description = "Creates a new user account with firstname, lastname, email, password.")
-    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @Valid @RequestBody final RegisterRequest request
@@ -28,7 +27,6 @@ public class AuthenticationController {
     @Operation(summary = "Login to the app",
             description = "Authenticates a user with a valid email and password. " +
                     "Returns a JWT access token and basic user information upon successful login.")
-    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @Valid @RequestBody AuthenticationRequest request

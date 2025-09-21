@@ -24,7 +24,7 @@ public class ItemController {
     @Operation(summary = "Get all items",
             description = "Returns a list with all items of selected category.")
     @GetMapping
-    public ResponseEntity<?> getAllItems(@RequestParam ItemType itemType) {
+    public ResponseEntity<?> getAllItems(@RequestParam(required = false) ItemType itemType) {
         return ResponseEntity.ok(itemService.findAll());
     }
 
