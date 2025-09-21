@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/SproutWeb.iml" filepath="$PROJECT_DIR$/.idea/SproutWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sprout/sprout.iml" filepath="$PROJECT_DIR$/sprout/sprout.iml" />
     </modules>
   </component>
 </project>

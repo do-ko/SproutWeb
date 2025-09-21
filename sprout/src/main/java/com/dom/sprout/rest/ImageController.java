@@ -21,7 +21,6 @@ public class ImageController {
 
     @Operation(summary = "Get image",
             description = "Returns and image according to given filename.")
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/download/{fileName}")
     public ResponseEntity<?> getImage(@PathVariable String fileName) throws Exception {
         String pathToImg = "sprout\\src\\main\\resources\\static\\" + fileName;
